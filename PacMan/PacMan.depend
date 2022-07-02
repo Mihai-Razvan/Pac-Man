@@ -1,6 +1,8 @@
 # depslib dependency file v1.0
-1656688622 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1656795284 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+	<iostream>
 	<SFML/Graphics.hpp>
+	<string>
 
 1525812018 d:\frameworks_libraries\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
