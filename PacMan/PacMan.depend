@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1656795284 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1656865260 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
 	<iostream>
-	<SFML/Graphics.hpp>
-	<string>
+	"Map.h"
+	"UI.h"
 
 1525812018 d:\frameworks_libraries\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -412,4 +412,21 @@
 	<SFML/Graphics/PrimitiveType.hpp>
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
+
+1656865260 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\map.cpp
+	"Map.h"
+	<string>
+	<SFML/Graphics.hpp>
+
+1656867816 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\map.h
+	<string>
+
+1656865823 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+	<SFML/Graphics.hpp>
+	"Map.h"
+
+1656869037 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+	"UI.h"
+	<SFML/Graphics.hpp>
+	"Map.h"
 
