@@ -1,51 +1,28 @@
 #ifndef MAP_H
 #define MAP_H
 #include <string>
+#include <SFML/Graphics.hpp>
 
 namespace game
 {
 class Map
 {
 private:
-    std::string tileMap[31][28] =
-    {
-        {"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"},
-{"W","O","O","O","O","O","O","O","O","O","O","O","O","W","W","O","O","O","O","O","O","O","O","O","O","O","O","W"},
-{"W","O","W","W","W","W","O","W","W","W","W","W","O","W","W","O","W","W","W","W","W","O","W","W","W","W","O","W"},
-{"W","O","W","W","W","W","O","W","W","W","W","W","O","W","W","O","W","W","W","W","W","O","W","W","W","W","O","W"},
-{"W","O","W","W","W","W","O","W","W","W","W","W","O","W","W","O","W","W","W","W","W","O","W","W","W","W","O","W"},
-{"W","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","W"},
-{"W","O","W","W","W","W","O","W","W","O","W","W","W","W","W","W","W","W","O","W","W","O","W","W","W","W","O","W"},
-{"W","O","W","W","W","W","O","W","W","O","W","W","W","W","W","W","W","W","O","W","W","O","W","W","W","W","O","W"},
-{"W","O","O","O","O","O","O","W","W","O","O","O","O","W","W","O","O","O","O","W","W","O","O","O","O","O","O","W"},
-{"W","W","W","W","W","W","O","W","W","W","W","W","N","W","W","N","W","W","W","W","W","O","W","W","W","W","W","W"},
-{"N","N","N","N","N","W","O","W","W","W","W","W","N","W","W","N","W","W","W","W","W","O","W","N","N","N","N","N"},
-{"N","N","N","N","N","W","O","W","W","N","N","N","N","N","N","N","N","N","N","W","W","O","W","N","N","N","N","N"},
-{"N","N","N","N","N","W","O","W","W","N","W","W","W","G","G","W","W","W","N","W","W","O","W","N","N","N","N","N"},
-{"W","W","W","W","W","W","O","W","W","N","W","N","N","N","N","N","N","W","N","W","W","O","W","W","W","W","W","W"},
-{"P","N","N","N","N","N","O","N","N","N","W","N","N","N","N","N","N","W","N","N","N","O","N","N","N","N","N","P"},
-{"W","W","W","W","W","W","O","W","W","N","W","W","W","W","W","W","W","W","N","W","W","O","W","W","W","W","W","W"},
-{"N","N","N","N","N","W","O","W","W","N","W","W","W","W","W","W","W","W","N","W","W","O","W","N","N","N","N","N"},
-{"N","N","N","N","N","W","O","W","W","N","N","N","N","N","N","N","N","N","N","W","W","O","W","N","N","N","N","N"},
-{"N","N","N","N","N","W","O","W","W","N","W","W","W","W","W","W","W","W","N","W","W","O","W","N","N","N","N","N"},
-{"W","W","W","W","W","W","O","W","W","N","W","W","W","W","W","W","W","W","N","W","W","O","W","W","W","W","W","W"},
-{"W","O","O","O","O","O","O","O","O","O","O","O","O","W","W","O","O","O","O","O","O","O","O","O","O","O","O","W"},
-{"W","O","W","W","W","W","O","W","W","W","W","W","O","W","W","O","W","W","W","W","W","O","W","W","W","W","O","W"},
-{"W","O","W","W","W","W","O","W","W","W","W","W","O","W","W","O","W","W","W","W","W","O","W","W","W","W","O","W"},
-{"W","O","O","O","W","W","O","O","O","O","O","O","O","N","N","O","O","O","O","O","O","O","W","W","O","O","O","W"},
-{"W","W","W","O","W","W","O","W","W","O","W","W","W","W","W","W","W","W","O","W","W","O","W","W","O","W","W","W"},
-{"W","W","W","O","W","W","O","W","W","O","W","W","W","W","W","W","W","W","O","W","W","O","W","W","O","W","W","W"},
-{"W","O","O","O","O","O","O","W","W","O","O","O","O","W","W","O","O","O","O","W","W","O","O","O","O","O","O","W"},
-{"W","O","W","W","W","W","W","W","W","W","W","W","O","W","W","O","W","W","W","W","W","W","W","W","W","W","O","W"},
-{"W","O","W","W","W","W","W","W","W","W","W","W","O","W","W","O","W","W","W","W","W","W","W","W","W","W","O","W"},
-{"W","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","W"},
-{"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"}
+    static std::string tileMap[31][28];
 
-    };
+    sf::Texture mapTexture;
+    sf::Sprite mapSprite;
+
+    sf::RectangleShape rectangles[31][28];
+
+    void makeMapSprite();   //for testing purposes
 
 public:
-    Map() {};
-    std::string getTileMapElement(int, int );
+    Map();
+    static std::string getTileMapElement(int, int);
+    sf::Sprite& getMapSprite();
+
+    void drawRectangles(sf::RenderWindow&);   //for testing purposes
 };
 }
 

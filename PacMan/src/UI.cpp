@@ -1,26 +1,20 @@
-#include "UI.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "UI.h"
 #include "Map.h"
-
-#define TILEROWS 31
-#define TILECOLS 28
-#define TILESIZE 16
+#include "GlobalManager.h"
+#include "PacMan.h"
 
 game::UI::UI()
 {
-    makeRectangles();
+
 }
 
 void game::UI::renderGame()
 {
-    sf::RenderWindow window(sf::VideoMode(1000, 1000), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(game::GlobalManager::getScreenWidth(), game::GlobalManager::getScreenHeight()), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-
-    sf::Texture texture;
-    texture.loadFromFile("D://Projects//CodeBlocks-Projects//PacMan_GitRep//Sprites//map//map.png");
-    sf::Sprite mapSprite(texture);
-    mapSprite.setPosition(sf::Vector2f(50, 500));
 
     while (window.isOpen())
     {
@@ -29,37 +23,51 @@ void game::UI::renderGame()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            else if(event.type == sf::Event::KeyPressed)
+            {
+                switch(event.key.code)
+                {
+                case sf::Keyboard::W:
+                    pacMan.setDirection('W');
+                    break;
+                case sf::Keyboard::Up:
+                    pacMan.setDirection('W');
+                    break;
+
+                case sf::Keyboard::A:
+                    pacMan.setDirection('A');
+                    break;
+                case sf::Keyboard::Left:
+                    pacMan.setDirection('A');
+                    break;
+
+                case sf::Keyboard::S:
+                    pacMan.setDirection('S');
+                    break;
+                case sf::Keyboard::Down:
+                    pacMan.setDirection('S');
+                    break;
+
+                case sf::Keyboard::D:
+                    pacMan.setDirection('D');
+                    break;
+                case sf::Keyboard::Right:
+                    pacMan.setDirection('Ds');
+                    break;
+                }
+
+            }
         }
 
         window.clear();
-
-        window.draw(mapSprite);
-        int i, j;
-        for(i = 0; i < TILEROWS; i++)
-            for(j = 0; j < TILECOLS; j++)
-                window.draw(rectangles[i][j]);
-
+        window.draw(gameMap.getMapSprite());
+        pacMan.movement();
+        window.draw(pacMan.getActualPacMan());
+        //  gameMap.drawRectangles(window);
         window.display();
     }
 }
 
-void game::UI::makeRectangles()
-{
-    int i, j;
-    for(i = 0; i < TILEROWS; i++)
-        for(j = 0; j < TILECOLS; j++)
-        {
-            rectangles[i][j].setSize(sf::Vector2f(TILESIZE, TILESIZE));
-            rectangles[i][j].setPosition(sf::Vector2f(j * TILESIZE + 50, i * TILESIZE + 0));
-            if(gameMap.getTileMapElement(i, j) == "W")
-                rectangles[i][j].setFillColor(sf::Color::Blue);
-            else if(gameMap.getTileMapElement(i, j) == "O")
-                rectangles[i][j].setFillColor(sf::Color::Black);
-            else if(gameMap.getTileMapElement(i, j) == "N")
-                rectangles[i][j].setFillColor(sf::Color::Black);
-            else if(gameMap.getTileMapElement(i, j) == "G")
-                rectangles[i][j].setFillColor(sf::Color::Magenta);
-        }
-}
+
 
 

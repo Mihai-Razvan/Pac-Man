@@ -1,8 +1,11 @@
 # depslib dependency file v1.0
-1656865260 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1657050904 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
 	<iostream>
+	<string>
+	<SFML/Graphics.hpp>
 	"Map.h"
 	"UI.h"
+	"GlobalManager.h"
 
 1525812018 d:\frameworks_libraries\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -413,20 +416,43 @@
 	<SFML/Graphics/Drawable.hpp>
 	<SFML/Window/GlResource.hpp>
 
-1656865260 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\map.cpp
+1657042662 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\map.cpp
+	<string>
+	<SFML/Graphics.hpp>
+	<iostream>
+	"GlobalManager.h"
 	"Map.h"
+
+1657050748 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\map.h
 	<string>
 	<SFML/Graphics.hpp>
 
-1656867816 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\map.h
-	<string>
-
-1656865823 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+1657038322 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
 	<SFML/Graphics.hpp>
 	"Map.h"
+	"PacMan.h"
 
-1656869037 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+1657049498 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+	<SFML/Graphics.hpp>
+	<iostream>
 	"UI.h"
+	"Map.h"
+	"GlobalManager.h"
+	"PacMan.h"
+
+1657040975 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\globalmanager.cpp
 	<SFML/Graphics.hpp>
+	"GlobalManager.h"
+
+1657040975 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\globalmanager.h
+	<SFML/Graphics.hpp>
+
+1657050267 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
+	<SFML/Graphics.hpp>
+
+1657051026 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
+	<iostream>
+	"PacMan.h"
+	"GlobalManager.h"
 	"Map.h"
 
