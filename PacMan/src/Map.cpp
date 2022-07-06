@@ -59,7 +59,7 @@ void game::Map::drawRectangles(sf::RenderWindow &window)
             else if(tileMap[i][j] == "O")
                 rectangles[i][j].setFillColor(sf::Color(0, 0, 0, 128));
             else if(tileMap[i][j] == "N")
-                rectangles[i][j].setFillColor(sf::Color(0, 0, 0, 128));
+                rectangles[i][j].setFillColor(sf::Color(100, 0, 0, 128));
             else if(tileMap[i][j] == "G")
                 rectangles[i][j].setFillColor(sf::Color(233, 237, 7, 128));
 

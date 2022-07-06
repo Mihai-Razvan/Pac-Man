@@ -52,7 +52,7 @@ void game::UI::renderGame()
                     pacMan.setDirection('D');
                     break;
                 case sf::Keyboard::Right:
-                    pacMan.setDirection('Ds');
+                    pacMan.setDirection('D');
                     break;
                 }
 
@@ -63,7 +63,7 @@ void game::UI::renderGame()
         window.draw(gameMap.getMapSprite());
         pacMan.movement();
         window.draw(pacMan.getActualPacMan());
-        //  gameMap.drawRectangles(window);
+       // gameMap.drawRectangles(window);
         window.display();
     }
 }
