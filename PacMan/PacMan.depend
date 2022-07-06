@@ -427,18 +427,22 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1657038322 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+1657130694 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
 	<SFML/Graphics.hpp>
 	"Map.h"
 	"PacMan.h"
+	"Ghost.h"
+	"BlinkyGhost.h"
 
-1657115123 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+1657133760 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"UI.h"
 	"Map.h"
 	"GlobalManager.h"
 	"PacMan.h"
+	"Ghost.h"
+	"BlinkyGhost.h"
 
 1657040975 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\globalmanager.cpp
 	<SFML/Graphics.hpp>
@@ -455,4 +459,34 @@
 	"PacMan.h"
 	"GlobalManager.h"
 	"Map.h"
+
+1657118764 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\inkyghost.cpp
+	"InkyGhost.h"
+
+1657118759 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\inkyghost.h
+
+1657133723 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
+	<SFML/Graphics.hpp>
+	"Ghost.h"
+	"GlobalManager.h"
+
+1657133732 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ghost.h
+	<SFML/Graphics.hpp>
+	"Ghost.h"
+	"GlobalManager.h"
+
+1657133927 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\blinkyghost.cpp
+	"BlinkyGhost.h"
+	<SFML/Graphics.hpp>
+	"PacMan.h"
+	"GlobalManager.h"
+	"Map.h"
+	"Ghost.h"
+
+1657133796 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\blinkyghost.h
+	<SFML/Graphics.hpp>
+	"PacMan.h"
+	"GlobalManager.h"
+	"Map.h"
+	"Ghost.h"
 
