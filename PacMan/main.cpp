@@ -12,6 +12,7 @@ int game::GlobalManager::tileCols = 28;
 int game::GlobalManager::tileSize = 16;
 sf::Vector2f game::GlobalManager::mapPos;
 sf::Vector2f game::GlobalManager::mapSize;
+sf::Sprite game::PacMan::actualPacMan;
 std::string game::Map::tileMap[31][28] =
 {
         {"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"},

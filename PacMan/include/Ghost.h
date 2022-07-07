@@ -1,6 +1,7 @@
 #ifndef GHOST_H
 #define GHOST_H
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "Ghost.h"
 #include "GlobalManager.h"
 
@@ -19,9 +20,14 @@ protected:
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
     float spriteChangeInterval;
+    int pathMatrix[31][28];
+    std::vector<std::pair<int, int>> path;
+    int indexInPath;
 
     virtual void loadSprites() = 0;
     virtual void setInitialGhost() = 0;
+    virtual void findPath() = 0;
+    virtual void changeDirection() = 0;
 
     sf::Vector2f getActualPosition();
     void setGhostOrigin();

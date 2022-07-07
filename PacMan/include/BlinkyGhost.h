@@ -11,9 +11,12 @@ namespace game{
 class BlinkyGhost: public Ghost
 {
 private:
+
     void loadSprites();
     void setInitialGhost();
-
+    void findPath();
+    void reconstructPath(int ,int);
+    void changeDirection();
 
 public:
     BlinkyGhost();

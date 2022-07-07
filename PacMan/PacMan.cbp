@@ -52,16 +52,18 @@
 		<Linker>
 			<Add directory="D:/Frameworks_Libraries/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="include/BlinkyGhost.h" />
 		<Unit filename="include/Ghost.h" />
 		<Unit filename="include/GlobalManager.h" />
-		<Unit filename="include/InkyGhost.h" />
+		<Unit filename="include/LeeAlgorithm.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="include/PacMan.h" />
 		<Unit filename="include/UI.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/BlinkyGhost.cpp" />
 		<Unit filename="src/Ghost.cpp" />
 		<Unit filename="src/GlobalManager.cpp" />
-		<Unit filename="src/InkyGhost.cpp" />
+		<Unit filename="src/LeeAlgorithm.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/PacMan.cpp" />
 		<Unit filename="src/UI.cpp" />

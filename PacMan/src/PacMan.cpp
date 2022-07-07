@@ -46,7 +46,7 @@ void game::PacMan::loadSprites()
 void game::PacMan::setInitialPacMan()
 {
     setPacManOrigin();
-    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() / 2;
+    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 1.5;
     float posY = game::GlobalManager::getMapPos().y + (game::GlobalManager::getTileRows() / 2 - 1) * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
     actualPacMan.setPosition(sf::Vector2f(posX, posY));   //pacMan starting position
 }
