@@ -6,6 +6,7 @@
 #include "PacMan.h"
 #include "Ghost.h"
 #include "BlinkyGhost.h"
+#include "Fruits.h"
 
 game::UI::UI()
 {
@@ -34,6 +35,8 @@ void game::UI::renderGame()
 
         blinkyGhost.movement();
         window.draw(blinkyGhost.getActualGhost());
+
+        fruits.drawFruits(window);
         // gameMap.drawRectangles(window);
         window.display();
     }

@@ -5,6 +5,7 @@
 #include "PacMan.h"
 #include "Ghost.h"
 #include "BlinkyGhost.h"
+#include "Fruits.h"
 
 namespace game
 {
@@ -14,6 +15,7 @@ private:
     Map gameMap;
     PacMan pacMan;
     BlinkyGhost blinkyGhost;
+    Fruits fruits;
 
     void handleEvents(sf::Event&, sf::RenderWindow&);
 

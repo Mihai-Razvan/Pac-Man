@@ -13,6 +13,7 @@ int game::GlobalManager::tileSize = 16;
 sf::Vector2f game::GlobalManager::mapPos;
 sf::Vector2f game::GlobalManager::mapSize;
 sf::Sprite game::PacMan::actualPacMan;
+std::string game::Fruits::fruitsMap[31][28];
 std::string game::Map::tileMap[31][28] =
 {
         {"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"},
@@ -47,6 +48,7 @@ std::string game::Map::tileMap[31][28] =
         {"W","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","O","W"},
         {"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"}
 };
+
 
 int main()
 {

@@ -32,6 +32,7 @@ protected:
     sf::Vector2f getActualPosition();
     void setGhostOrigin();
     void rotateSprite(float);
+    void checkCollision();
 
 public:
     Ghost();

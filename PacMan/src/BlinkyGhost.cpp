@@ -108,6 +108,7 @@ void game::BlinkyGhost::movement()
 
     setGhostOrigin();
     actualGhost.setPosition(sf::Vector2f(newPosX, newPosY));
+    checkCollision();
 }
 
 sf::Sprite& game::BlinkyGhost::getActualGhost()

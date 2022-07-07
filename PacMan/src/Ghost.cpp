@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Ghost.h"
 #include "GlobalManager.h"
+#include "PacMan.h"
 
 game::Ghost::Ghost()
 {
@@ -25,4 +27,13 @@ sf::Vector2f game::Ghost::getActualPosition()
 void game::Ghost::rotateSprite(float angle)
 {
     actualGhost.setRotation(angle);
+}
+
+void game::Ghost::checkCollision()
+{
+    sf::Vector2f ghostPosition = getActualPosition();
+    sf::Vector2f pacManPosition = game::PacMan::getActualPosition();
+
+    if(ghostPosition.x == pacManPosition.x && ghostPosition.y == pacManPosition.y)
+        std::cout << "GAME OVER";
 }
