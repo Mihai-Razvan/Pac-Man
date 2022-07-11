@@ -6,7 +6,11 @@
 
 game::Ghost::Ghost()
 {
+    frigthenedTextures[0].loadFromFile("Sprites//ghosts//f-0.png");
+    frigthenedTextures[1].loadFromFile("Sprites//ghosts//f-1.png");
 
+    frigthenedSprites[0].setTexture(frigthenedTextures[0]);
+    frigthenedSprites[1].setTexture(frigthenedTextures[1]);
 }
 
 void game::Ghost::setGhostOrigin()
@@ -36,4 +40,19 @@ void game::Ghost::checkCollision()
 
     if(ghostPosition.x == pacManPosition.x && ghostPosition.y == pacManPosition.y)
         std::cout << "GAME OVER";
+}
+
+void game::Ghost::setMode(std::string mode)
+{
+    game::Ghost::mode = mode;
+}
+
+std::string game::Ghost::getMode()
+{
+    return mode;
+}
+
+void game::Ghost::enterFrightenedMode()
+{
+
 }

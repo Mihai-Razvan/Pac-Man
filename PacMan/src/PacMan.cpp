@@ -2,6 +2,8 @@
 #include "PacMan.h"
 #include "GlobalManager.h"
 #include "Map.h"
+#include "Fruits.h"
+#include "Ghost.h"
 
 game::PacMan::PacMan()
 {
@@ -83,7 +85,7 @@ void game::PacMan::movement()
 
         posX = actualPacMan.getPosition().x;
         posY = actualPacMan.getPosition().y + speed * elapsedTime;
-          rotateSprite(270);
+        rotateSprite(270);
     }
     else if(direction == 'A')
     {
@@ -190,4 +192,25 @@ void game::PacMan::setPacManOrigin()
     float sizeX = actualPacMan.getTexture()->getSize().x;
     float sizeY = actualPacMan.getTexture()->getSize().y;
     actualPacMan.setOrigin(sf::Vector2f(sizeX / 2, sizeY / 2));
+}
+
+void game::PacMan::eatFruit()
+{
+    sf::Vector2f actualPosition = getActualPosition();
+    if(game::Fruits::getFruit(actualPosition.y, actualPosition.x) == "O")   //orange
+    {
+        game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
+        int newScore = game::GlobalManager::getScore() + game::Fruits::getOrangeScore();
+        game::GlobalManager::setScore(newScore);
+        std::cout << game::GlobalManager::getScore() << std::endl;
+    }
+    else if(game::Fruits::getFruit(actualPosition.y, actualPosition.x) == "S")   //strawberry
+    {
+        game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
+        int newScore = game::GlobalManager::getScore() + game::Fruits::getStrawberryScore();
+        game::GlobalManager::setScore(newScore);
+        std::cout << game::GlobalManager::getScore() << std::endl;
+
+        game::Ghost::setMode("Frightened");
+    }
 }

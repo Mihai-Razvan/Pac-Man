@@ -98,12 +98,7 @@ void game::BlinkyGhost::movement()
         //change the sprite for actualGhost the actualGhost position will change and it will be (0, 0)
 
         spriteChangeClock.restart();
-        if(actualGhostSpriteIndex == 0)
-            actualGhostSpriteIndex = 1;
-        else
-            actualGhostSpriteIndex = 0;
-
-        actualGhost = ghostSprites[actualGhostSpriteIndex];
+        changeSprite();
     }
 
     setGhostOrigin();
@@ -300,6 +295,30 @@ void game::BlinkyGhost::reconstructPath(int i, int j)
 
         reconstructPath(i + dl[p], j + dc[p]);
         path.push_back(std::make_pair(i, j));
+    }
+}
+
+void game::BlinkyGhost::changeSprite()
+{
+    if(mode == "Chase")
+    {
+        if(actualGhostSpriteIndex == 0)
+            actualGhostSpriteIndex = 1;
+        else
+            actualGhostSpriteIndex = 0;
+
+        actualGhost = ghostSprites[actualGhostSpriteIndex];
+
+    }
+    else if(mode == "Frightened")
+    {
+
+        if(actualGhostSpriteIndex == 0)
+            actualGhostSpriteIndex = 1;
+        else
+            actualGhostSpriteIndex = 0;
+
+         actualGhost = frigthenedSprites[actualGhostSpriteIndex];
     }
 }
 

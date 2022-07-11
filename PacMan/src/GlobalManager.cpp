@@ -3,27 +3,27 @@
 
 float game::GlobalManager::getScreenWidth()
 {
-    return game::GlobalManager::screenWidth;
+    return screenWidth;
 }
 
 float game::GlobalManager::getScreenHeight()
 {
-    return game::GlobalManager::screenHeight;
+    return screenHeight;
 }
 
 int game::GlobalManager::getTileRows()
 {
-    return game::GlobalManager::tileRows;
+    return tileRows;
 }
 
 int game::GlobalManager::getTileCols()
 {
-    return game::GlobalManager::tileCols;
+    return tileCols;
 }
 
 int game::GlobalManager::getTileSize()
 {
-    return game::GlobalManager::tileSize;
+    return tileSize;
 }
 
 sf::Vector2f game::GlobalManager::getMapPos()
@@ -46,4 +46,14 @@ void game::GlobalManager::setMapPos(sf::Vector2f mapPos)
 void game::GlobalManager::setMapSize(sf::Vector2f mapSize)
 {
     game::GlobalManager::mapSize = mapSize;
+}
+
+int game::GlobalManager::getScore()
+{
+    return score;
+}
+
+void game::GlobalManager::setScore(int score)
+{
+    game::GlobalManager::score = score;
 }

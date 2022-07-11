@@ -31,6 +31,7 @@ void game::UI::renderGame()
         window.draw(gameMap.getMapSprite());
 
         pacMan.movement();
+        pacMan.eatFruit();
         window.draw(pacMan.getActualPacMan());
 
         blinkyGhost.movement();

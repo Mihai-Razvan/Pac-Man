@@ -4,16 +4,23 @@
 #include "Map.h"
 #include "UI.h"
 #include "GlobalManager.h"
+#include "Fruits.h"
 
 float game::GlobalManager::screenWidth = 600.f;
 float game::GlobalManager::screenHeight = 600.f;
 int game::GlobalManager::tileRows = 31;
 int game::GlobalManager::tileCols = 28;
 int game::GlobalManager::tileSize = 16;
+int game::GlobalManager::score = 0;
 sf::Vector2f game::GlobalManager::mapPos;
 sf::Vector2f game::GlobalManager::mapSize;
 sf::Sprite game::PacMan::actualPacMan;
+std::string game::Ghost::mode = "Chase";
+sf::Texture game::Ghost::frigthenedTextures[2];
+sf::Sprite game::Ghost::frigthenedSprites[2];
 std::string game::Fruits::fruitsMap[31][28];
+int game::Fruits::orangeScore = 100;
+int game::Fruits::strawberryScore = 500;
 std::string game::Map::tileMap[31][28] =
 {
         {"W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W","W"},

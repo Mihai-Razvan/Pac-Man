@@ -14,6 +14,11 @@ private:
 protected:
     sf::Texture orangeTexture;
     sf::Sprite orangeSprite;
+    sf::Texture strawberryTexture;
+    sf::Sprite strawberrySprite;
+
+    static int orangeScore;
+    static int strawberryScore;
 
     void loadSprites();
 
@@ -23,7 +28,9 @@ public:
     void makeFruitsMap();
     void drawFruits(sf::RenderWindow&);
     static std::string getFruit(int, int);
-
+    static void setFruit(int, int, std::string);
+    static int getOrangeScore();
+    static int getStrawberryScore();
 };
 }
 #endif // FRUITS_H

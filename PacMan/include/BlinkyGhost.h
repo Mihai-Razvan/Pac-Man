@@ -17,6 +17,7 @@ private:
     void findPath();
     void reconstructPath(int ,int);
     void changeDirection();
+    void changeSprite();
 
 public:
     BlinkyGhost();
