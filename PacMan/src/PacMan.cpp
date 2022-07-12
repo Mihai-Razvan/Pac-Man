@@ -202,15 +202,15 @@ void game::PacMan::eatFruit()
         game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
         int newScore = game::GlobalManager::getScore() + game::Fruits::getOrangeScore();
         game::GlobalManager::setScore(newScore);
-        std::cout << game::GlobalManager::getScore() << std::endl;
+     //   std::cout << game::GlobalManager::getScore() << std::endl;
     }
     else if(game::Fruits::getFruit(actualPosition.y, actualPosition.x) == "S")   //strawberry
     {
         game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
         int newScore = game::GlobalManager::getScore() + game::Fruits::getStrawberryScore();
         game::GlobalManager::setScore(newScore);
-        std::cout << game::GlobalManager::getScore() << std::endl;
+      //  std::cout << game::GlobalManager::getScore() << std::endl;
 
-        game::Ghost::setMode("Frightened");
+        game::Ghost::startFrightened();
     }
 }

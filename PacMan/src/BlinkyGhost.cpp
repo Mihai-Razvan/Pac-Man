@@ -15,10 +15,9 @@ game::BlinkyGhost::BlinkyGhost()
     setInitialGhost();
 
     direction = 'D';
-    speed = 150;
     spriteChangeInterval = 0.1f;
     actualGhostSpriteIndex = 0;
-    findPath();
+    findPath(findTargetPoint());
     changeDirection();
 }
 
@@ -45,7 +44,8 @@ void game::BlinkyGhost::movement()
 
     float elapsedTime = movementClock.getElapsedTime().asSeconds();
     movementClock.restart();
-    float newPosX, newPosY;
+    float newPosX = actualGhost.getPosition().x;
+    float newPosY = actualGhost.getPosition().y;
     float posX = actualGhost.getPosition().x;
     float posY = actualGhost.getPosition().y;
     int pathSize = path.size();
@@ -54,51 +54,62 @@ void game::BlinkyGhost::movement()
     {
         sf::Vector2f actualTile = getActualPosition();
         float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if((game::Map::getTileMapElement(actualTile.y - 1, actualTile.x) == "W" || indexInPath == pathSize - 1) && posY <= limitY)
-            return;
-
-        newPosX = posX;
-        newPosY = posY - speed * elapsedTime;
+        if(!((game::Map::getTileMapElement(actualTile.y - 1, actualTile.x) == "W" || indexInPath == pathSize - 1) && posY <= limitY))
+        {
+            newPosX = posX;
+            newPosY = posY - speed * elapsedTime;
+        }
     }
     else if(direction == 'S')
     {
         sf::Vector2f actualTile = getActualPosition();
         float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if((game::Map::getTileMapElement(actualTile.y + 1, actualTile.x) == "W" || indexInPath == pathSize - 1) && posY >= limitY)
-            return;
-
-        newPosX = posX;
-        newPosY = posY + speed * elapsedTime;
+        if(!((game::Map::getTileMapElement(actualTile.y + 1, actualTile.x) == "W" || indexInPath == pathSize - 1) && posY >= limitY))
+        {
+            newPosX = posX;
+            newPosY = posY + speed * elapsedTime;
+        }
     }
     else if(direction == 'A')
     {
         sf::Vector2f actualTile = getActualPosition();
         float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if((game::Map::getTileMapElement(actualTile.y, actualTile.x - 1) == "W" || indexInPath == pathSize - 1) && posX <= limitX)
-            return;
-
-        newPosX = posX - speed * elapsedTime;
-        newPosY = posY;
+        if(!((game::Map::getTileMapElement(actualTile.y, actualTile.x - 1) == "W" || indexInPath == pathSize - 1) && posX <= limitX))
+        {
+            newPosX = posX - speed * elapsedTime;
+            newPosY = posY;
+        }
     }
     else if(direction == 'D')
     {
         sf::Vector2f actualTile = getActualPosition();
         float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if((game::Map::getTileMapElement(actualTile.y, actualTile.x + 1) == "W" || indexInPath == pathSize - 1) && posX >= limitX)
-            return;
-
-        newPosX = posX + speed * elapsedTime;
-        newPosY = posY;
+        if(!((game::Map::getTileMapElement(actualTile.y, actualTile.x + 1) == "W" || indexInPath == pathSize - 1) && posX >= limitX))
+        {
+            newPosX = posX + speed * elapsedTime;
+            newPosY = posY;
+        }
     }
 
     float spriteChangeElapsedTime = spriteChangeClock.getElapsedTime().asSeconds();
     if(spriteChangeElapsedTime >= spriteChangeInterval)
     {
-        findPath();   //when we change sprite we also recalculate path so we don t need to recalculate it every frame; we do it here istead of doing it on the end of this if cuz when we
+        //when we change sprite we also recalculate path so we don t need to recalculate it every frame; we do it here istead of doing it on the end of this if cuz when we
         //change the sprite for actualGhost the actualGhost position will change and it will be (0, 0)
+        if(mode == "Chase")
+            findPath(findTargetPoint());
+        else if(mode == "Frightened")
+            findPath(findFrightenedTargetPoint());
 
         spriteChangeClock.restart();
         changeSprite();
+    }
+
+    timeInFrigthened = frightenedClock.getElapsedTime().asSeconds();
+    if(timeInFrigthened >= frigthenedTime)
+    {
+        mode = "Chase";
+        frightenedClock.restart();
     }
 
     setGhostOrigin();
@@ -238,88 +249,10 @@ void game::BlinkyGhost::changeDirection()
     }
 }
 
-
-
-void game::BlinkyGhost::findPath()
+sf::Vector2f game::BlinkyGhost::findTargetPoint()
 {
-    int dl[] = {-1, 0, 1, 0};
-    int dc[] = {0, 1, 0, -1};
+    float posY = game::PacMan::getActualPosition().y;
+    float posX = game::PacMan::getActualPosition().x;
 
-    for(int i = 0; i < 31; i++)
-        for(int j = 0; j < 28; j++)
-            pathMatrix[i][j] = 0;
-
-    pathMatrix[(int) getActualPosition().y][(int) getActualPosition().x] = 1;
-
-    std::queue<std::pair<int, int>> coada;
-    coada.push(std::make_pair(getActualPosition().y, getActualPosition().x));
-
-    int x, y, xx, yy;
-    while(!coada.empty())
-    {
-        y = coada.front().first;
-        x = coada.front().second;
-
-        for(int i = 0; i < 4; i++)
-        {
-            xx = x + dc[i];
-            yy = y + dl[i];
-            if((game::Map::getTileMapElement(yy, xx) == "O" || game::Map::getTileMapElement(yy, xx) == "G") && pathMatrix[yy][xx] == 0)
-            {
-                coada.push(std::make_pair(yy, xx));
-                pathMatrix[yy][xx] = pathMatrix[y][x] + 1;
-            }
-        }
-
-        coada.pop();
-    }
-
-    path.resize(0);
-    indexInPath = 0;
-    reconstructPath((int) game::PacMan::getActualPosition().y, (int) game::PacMan::getActualPosition().x);
+    return sf::Vector2f(posY, posX);
 }
-
-void game::BlinkyGhost::reconstructPath(int i, int j)
-{
-    int dl[] = {-1, 0, 1, 0};
-    int dc[] = {0, 1, 0, -1};
-
-    if(pathMatrix[i][j] == 1)
-        path.push_back(std::make_pair(i, j));
-    else
-    {
-        int p = -1;
-        for(int k = 0; k < 4 && p == -1; k ++)
-            if(pathMatrix[i][j] == pathMatrix[i + dl[k]][j + dc[k]] + 1)
-                p = k;
-
-        reconstructPath(i + dl[p], j + dc[p]);
-        path.push_back(std::make_pair(i, j));
-    }
-}
-
-void game::BlinkyGhost::changeSprite()
-{
-    if(mode == "Chase")
-    {
-        if(actualGhostSpriteIndex == 0)
-            actualGhostSpriteIndex = 1;
-        else
-            actualGhostSpriteIndex = 0;
-
-        actualGhost = ghostSprites[actualGhostSpriteIndex];
-
-    }
-    else if(mode == "Frightened")
-    {
-
-        if(actualGhostSpriteIndex == 0)
-            actualGhostSpriteIndex = 1;
-        else
-            actualGhostSpriteIndex = 0;
-
-         actualGhost = frigthenedSprites[actualGhostSpriteIndex];
-    }
-}
-
-

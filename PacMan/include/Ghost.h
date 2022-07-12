@@ -17,32 +17,41 @@ protected:
     static sf::Sprite frigthenedSprites[2];
     sf::Sprite actualGhost;
     int actualGhostSpriteIndex;
+    std::string actualGhostSpriteType;   //chase or frightened; used for clipping when coming back to normal
     char direction;    //could pe 'W', 'A', 'S', 'D'
-    float speed;      //per second
+    static float speed;      //per second
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
+    static sf::Clock frightenedClock;
     float spriteChangeInterval;
     int pathMatrix[31][28];
     std::vector<std::pair<int, int>> path;
     int indexInPath;
     static std::string mode;
+    static int frigthenedTime;       //how long ghosts stay frightened
+    static float timeInFrigthened;    //since ghosts became frightened
+    static sf::Vector2f respawnPoint;
 
     virtual void loadSprites() = 0;
     virtual void setInitialGhost() = 0;
-    virtual void findPath() = 0;
     virtual void changeDirection() = 0;
-    virtual void changeSprite() = 0;
+    virtual void changeSprite();
 
     sf::Vector2f getActualPosition();
     void setGhostOrigin();
     void rotateSprite(float);
     void checkCollision();
 
+    virtual sf::Vector2f findTargetPoint() = 0;
+    void makePathMatrix();
+    void findPath(sf::Vector2f);
+    void reconstructPath(int ,int);
+    sf::Vector2f findFrightenedTargetPoint();
+
 public:
     Ghost();
-    static void setMode(std::string);
+    static void startFrightened();
     static std::string getMode();
-    static void enterFrightenedMode();
 
     virtual void movement() = 0;
     virtual sf::Sprite& getActualGhost() = 0;

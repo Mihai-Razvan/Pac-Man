@@ -30,6 +30,8 @@ void game::UI::renderGame()
         window.clear();
         window.draw(gameMap.getMapSprite());
 
+        fruits.drawFruits(window);
+
         pacMan.movement();
         pacMan.eatFruit();
         window.draw(pacMan.getActualPacMan());
@@ -37,7 +39,6 @@ void game::UI::renderGame()
         blinkyGhost.movement();
         window.draw(blinkyGhost.getActualGhost());
 
-        fruits.drawFruits(window);
         // gameMap.drawRectangles(window);
         window.display();
     }

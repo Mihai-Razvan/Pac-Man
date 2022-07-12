@@ -40,7 +40,7 @@ void game::Fruits::makeFruitsMap()
             if(game::Map::getTileMapElement(i, j) == "O" && fruitsMap[i - 1][j] == "N" && fruitsMap[i + 1][j] == "N" && fruitsMap[i][j - 1] == "N" && fruitsMap[i][j + 1] == "N"
                     && fruitsMap[i - 1][j - 1] == "N" && fruitsMap[i - 1][j + 1] == "N" && fruitsMap[i + 1][j - 1] == "N" && fruitsMap[i + 1][j + 1] == "N")
             {
-                int randVal = rand() % 8 + 1;
+                int randVal = rand() % 20 + 1;
 
                 switch(randVal)
                 {

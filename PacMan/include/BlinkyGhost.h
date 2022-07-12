@@ -14,10 +14,8 @@ private:
 
     void loadSprites();
     void setInitialGhost();
-    void findPath();
-    void reconstructPath(int ,int);
     void changeDirection();
-    void changeSprite();
+    sf::Vector2f findTargetPoint();
 
 public:
     BlinkyGhost();
