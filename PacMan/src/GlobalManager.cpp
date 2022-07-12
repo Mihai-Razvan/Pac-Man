@@ -57,3 +57,13 @@ void game::GlobalManager::setScore(int score)
 {
     game::GlobalManager::score = score;
 }
+
+void game::GlobalManager::setLives(int lives)
+{
+    game::GlobalManager::lives = lives;
+}
+
+int game::GlobalManager::getLives()
+{
+    return lives;
+}

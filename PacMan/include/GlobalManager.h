@@ -17,6 +17,7 @@ private:
     static sf::Vector2f mapSize;
 
     static int score;
+    static int lives;
 
 public:
     static float getScreenWidth();
@@ -27,11 +28,13 @@ public:
     static sf::Vector2f getMapPos();
     static sf::Vector2f getMapSize();
 
-    static void setMapPos(sf::Vector2f mapPos);
-    static void setMapSize(sf::Vector2f mapSize);
+    static void setMapPos(sf::Vector2f);
+    static void setMapSize(sf::Vector2f);
 
-    static void setScore(int val);
+    static void setScore(int);
     static int getScore();
+    static void setLives(int);
+    static int getLives();
 };
 }
 

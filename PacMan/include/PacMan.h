@@ -16,6 +16,7 @@ private:
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
     float spriteChangeInterval;
+    static sf::Vector2f spawnPoint;
 
     void loadSprites();
     void setInitialPacMan();
@@ -31,6 +32,7 @@ public:
     void setDirection(char direction);
     static sf::Vector2f getActualPosition();     //returns the tile where pacMan is now positioned
     void eatFruit();
+    void toSpawnPoint();
 };
 }
 

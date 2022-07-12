@@ -13,9 +13,12 @@ class UI
 {
 private:
     Map gameMap;
-    PacMan pacMan;
+    static PacMan pacMan;
     BlinkyGhost blinkyGhost;
     Fruits fruits;
+
+    sf::Texture lifeTexture;
+    sf::Sprite lifeSprite;
 
     void handleEvents(sf::Event&, sf::RenderWindow&);
 
@@ -23,7 +26,9 @@ public:
 
     UI();
     void renderGame();
-
+    void openUISprites();   //to open different UI elements that don t have a class attributed such as lives, score
+    void drawUI(sf::RenderWindow&);
+    static void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
 };
 }
 

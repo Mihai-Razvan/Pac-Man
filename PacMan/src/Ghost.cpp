@@ -5,6 +5,7 @@
 #include "GlobalManager.h"
 #include "PacMan.h"
 #include "Map.h"
+#include "UI.h"
 
 game::Ghost::Ghost()
 {
@@ -47,7 +48,13 @@ void game::Ghost::checkCollision()
     if(ghostPosition.x == pacManPosition.x && ghostPosition.y == pacManPosition.y)
     {
         if(mode == "Chase")
-            std::cout << "GAME OVER";
+        {
+            int newLives = game::GlobalManager::getLives() - 1;
+            game::GlobalManager::setLives(newLives);
+            game::UI::restartRound();
+            if(newLives == 0)
+                std::cout << "GAME OVER" << std::endl;
+        }
         else if(mode == "Frightened")
             actualGhost.setPosition(respawnPoint);
     }

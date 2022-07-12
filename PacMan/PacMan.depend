@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1657623091 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1657654911 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
 	<iostream>
 	<string>
 	<SFML/Graphics.hpp>
@@ -7,6 +7,8 @@
 	"UI.h"
 	"GlobalManager.h"
 	"Fruits.h"
+	"PacMan.h"
+	"BlinkyGhost.h"
 
 1525812018 d:\frameworks_libraries\sfml-2.5.1\include\sfml\graphics.hpp
 	<SFML/Window.hpp>
@@ -428,7 +430,7 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1657213248 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+1657654911 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
 	<SFML/Graphics.hpp>
 	"Map.h"
 	"PacMan.h"
@@ -436,7 +438,7 @@
 	"BlinkyGhost.h"
 	"Fruits.h"
 
-1657621930 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+1657655159 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"UI.h"
@@ -447,17 +449,17 @@
 	"BlinkyGhost.h"
 	"Fruits.h"
 
-1657564001 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\globalmanager.cpp
+1657652287 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\globalmanager.cpp
 	<SFML/Graphics.hpp>
 	"GlobalManager.h"
 
-1657564001 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\globalmanager.h
+1657652304 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\globalmanager.h
 	<SFML/Graphics.hpp>
 
-1657565446 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
+1657654195 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
 	<SFML/Graphics.hpp>
 
-1657621136 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
+1657653551 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
 	<iostream>
 	"PacMan.h"
 	"GlobalManager.h"
@@ -470,7 +472,7 @@
 
 1657118759 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\inkyghost.h
 
-1657631486 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
+1657653917 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<queue>
@@ -478,8 +480,9 @@
 	"GlobalManager.h"
 	"PacMan.h"
 	"Map.h"
+	"UI.h"
 
-1657631593 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ghost.h
+1657653332 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ghost.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"Ghost.h"

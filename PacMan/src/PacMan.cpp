@@ -50,7 +50,8 @@ void game::PacMan::setInitialPacMan()
     setPacManOrigin();
     float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 1.5;
     float posY = game::GlobalManager::getMapPos().y + (game::GlobalManager::getTileRows() / 2 - 1) * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-    actualPacMan.setPosition(sf::Vector2f(posX, posY));   //pacMan starting position
+    spawnPoint = sf::Vector2f(posX, posY);
+    actualPacMan.setPosition(spawnPoint);   //pacMan starting position
 }
 
 sf::Sprite& game::PacMan::getActualPacMan()
@@ -202,15 +203,19 @@ void game::PacMan::eatFruit()
         game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
         int newScore = game::GlobalManager::getScore() + game::Fruits::getOrangeScore();
         game::GlobalManager::setScore(newScore);
-     //   std::cout << game::GlobalManager::getScore() << std::endl;
     }
     else if(game::Fruits::getFruit(actualPosition.y, actualPosition.x) == "S")   //strawberry
     {
         game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
         int newScore = game::GlobalManager::getScore() + game::Fruits::getStrawberryScore();
         game::GlobalManager::setScore(newScore);
-      //  std::cout << game::GlobalManager::getScore() << std::endl;
 
         game::Ghost::startFrightened();
     }
+}
+
+void game::PacMan::toSpawnPoint()
+{
+    actualPacMan.setPosition(spawnPoint);
+    rotateSprite(180);
 }

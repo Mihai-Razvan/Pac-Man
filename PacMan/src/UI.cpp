@@ -10,7 +10,7 @@
 
 game::UI::UI()
 {
-
+    openUISprites();
 }
 
 void game::UI::renderGame()
@@ -38,6 +38,8 @@ void game::UI::renderGame()
 
         blinkyGhost.movement();
         window.draw(blinkyGhost.getActualGhost());
+
+        drawUI(window);
 
         // gameMap.drawRectangles(window);
         window.display();
@@ -86,6 +88,27 @@ void game::UI::handleEvents(sf::Event &event, sf::RenderWindow& window)
     }
 }
 
+void game::UI::openUISprites()
+{
+    lifeTexture.loadFromFile("Sprites//fruits//apple.png");     //to be changes
+    lifeSprite.setTexture(lifeTexture);
+    lifeSprite.setOrigin(lifeTexture.getSize().x / 2, lifeTexture.getSize().y / 2);
+}
 
+void game::UI::drawUI(sf::RenderWindow &window)
+{
+    for(int i = 0; i < game::GlobalManager::getLives(); i++)
+    {
+        float posX = 30 + i * 50;
+        float posY = game::GlobalManager::getScreenHeight() - 25;
+        lifeSprite.setPosition(sf::Vector2f(posX, posY));
+        window.draw(lifeSprite);
+    }
+}
+
+void game::UI::restartRound()
+{
+    pacMan.toSpawnPoint();
+}
 
 
