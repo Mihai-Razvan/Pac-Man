@@ -8,7 +8,7 @@
 #include "PacMan.h"
 #include "BlinkyGhost.h"
 
-game::PacMan game::UI::pacMan;
+//game::PacMan game::UI::pacMan;
 //game::BlinkyGhost game::UI::blinkyGhost;
 
 float game::GlobalManager::screenWidth = 600.f;
@@ -23,6 +23,8 @@ sf::Vector2f game::GlobalManager::mapSize;
 
 sf::Sprite game::PacMan::actualPacMan;
 sf::Vector2f game::PacMan::spawnPoint;
+bool game::PacMan::dying = false;
+int game::PacMan::actualPacManSpriteIndex;
 
 std::string game::Ghost::mode = "Chase";
 sf::Texture game::Ghost::frigthenedTextures[2];
@@ -32,6 +34,8 @@ float game::Ghost::timeInFrigthened;
 float game::Ghost::speed = 100;
 sf::Vector2f game::Ghost::respawnPoint;
 sf::Clock game::Ghost::frightenedClock;
+sf::Vector2f game::Ghost::spawnPoint;
+sf::Sprite game::Ghost::actualGhost;
 
 std::string game::Fruits::fruitsMap[31][28];
 int game::Fruits::orangeScore = 100;

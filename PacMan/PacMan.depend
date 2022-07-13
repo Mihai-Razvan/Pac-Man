@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1657654911 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1657741476 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
 	<iostream>
 	<string>
 	<SFML/Graphics.hpp>
@@ -430,7 +430,7 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1657654911 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+1657709616 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
 	<SFML/Graphics.hpp>
 	"Map.h"
 	"PacMan.h"
@@ -438,7 +438,7 @@
 	"BlinkyGhost.h"
 	"Fruits.h"
 
-1657655159 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+1657742111 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	"UI.h"
@@ -456,23 +456,24 @@
 1657652304 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\globalmanager.h
 	<SFML/Graphics.hpp>
 
-1657654195 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
+1657741466 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
 	<SFML/Graphics.hpp>
 
-1657653551 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
+1657742026 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
 	<iostream>
 	"PacMan.h"
 	"GlobalManager.h"
 	"Map.h"
 	"Fruits.h"
 	"Ghost.h"
+	"UI.h"
 
 1657118764 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\inkyghost.cpp
 	"InkyGhost.h"
 
 1657118759 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\inkyghost.h
 
-1657653917 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
+1657741466 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<queue>
@@ -482,13 +483,13 @@
 	"Map.h"
 	"UI.h"
 
-1657653332 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ghost.h
+1657710101 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ghost.h
 	<SFML/Graphics.hpp>
 	<vector>
 	"Ghost.h"
 	"GlobalManager.h"
 
-1657634252 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\blinkyghost.cpp
+1657709983 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\blinkyghost.cpp
 	"BlinkyGhost.h"
 	<SFML/Graphics.hpp>
 	<queue>

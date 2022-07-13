@@ -10,18 +10,19 @@ private:
     sf::Texture pacManTextures[11];
     sf::Sprite pacManSprites[11];
     static sf::Sprite actualPacMan;     //the actual sprite of the pacman
-    int actualPacManSpriteIndex;
+    static int actualPacManSpriteIndex;
     char direction;    //could pe 'W', 'A', 'S', 'D'
     float speed;      //per second
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
     float spriteChangeInterval;
     static sf::Vector2f spawnPoint;
+    static bool dying;   //when it is done the dying animation
 
     void loadSprites();
     void setInitialPacMan();
     void changeSprite(int);
-    void rotateSprite(float);
+    static void rotateSprite(float);
     void setPacManOrigin();
 
 public:
@@ -32,7 +33,10 @@ public:
     void setDirection(char direction);
     static sf::Vector2f getActualPosition();     //returns the tile where pacMan is now positioned
     void eatFruit();
-    void toSpawnPoint();
+    static void toSpawnPoint();
+    static void setDying(bool);
+    static bool getDying();
+    static int getActualPacManSpriteIndex();
 };
 }
 

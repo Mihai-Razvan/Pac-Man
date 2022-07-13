@@ -51,7 +51,7 @@ void game::Ghost::checkCollision()
         {
             int newLives = game::GlobalManager::getLives() - 1;
             game::GlobalManager::setLives(newLives);
-            game::UI::restartRound();
+            game::PacMan::setDying(true);
             if(newLives == 0)
                 std::cout << "GAME OVER" << std::endl;
         }
@@ -215,5 +215,7 @@ sf::Vector2f game::Ghost::findFrightenedTargetPoint()
     return furtherestPoint;
 }
 
-
-
+void game::Ghost::toSpawnPoint()
+{
+    actualGhost.setPosition(spawnPoint);
+}

@@ -35,7 +35,8 @@ void game::BlinkyGhost::setInitialGhost()
     setGhostOrigin();
     float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 1.5;
     float posY = game::GlobalManager::getMapPos().y + game::GlobalManager::getTileSize() * 1.5;
-    actualGhost.setPosition(sf::Vector2f(posX, posY));
+    spawnPoint = sf::Vector2f(posX, posY);
+    actualGhost.setPosition(spawnPoint);
 }
 
 void game::BlinkyGhost::movement()

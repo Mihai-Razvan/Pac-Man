@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Fruits.h"
 #include "Ghost.h"
+#include "UI.h"
 
 game::PacMan::PacMan()
 {
@@ -63,67 +64,93 @@ void game::PacMan::movement()
 {
     float elapsedTime = movementClock.getElapsedTime().asSeconds();
     movementClock.restart();
-    float posX, posY;
+    float posX = actualPacMan.getPosition().x;
+    float posY = actualPacMan.getPosition().y;
 
-    if(direction == 'W')
+    if(dying == false)
     {
-        sf::Vector2f actualTile = getActualPosition();
-        float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        //the Y coordinates pacMan can t go further in case there is a wall on the next tile;
-        if(game::Map::getTileMapElement(actualTile.y - 1, actualTile.x) == "W" && actualPacMan.getPosition().y <= limitY)
-            return;
+        if(direction == 'W')
+        {
+            sf::Vector2f actualTile = getActualPosition();
+            float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
+            //the Y coordinates pacMan can t go further in case there is a wall on the next tile;
+            if(game::Map::getTileMapElement(actualTile.y - 1, actualTile.x) == "W" && actualPacMan.getPosition().y <= limitY)
+                return;
 
-        posX = actualPacMan.getPosition().x;
-        posY = actualPacMan.getPosition().y - speed * elapsedTime;
-        rotateSprite(90);
+            posX = actualPacMan.getPosition().x;
+            posY = actualPacMan.getPosition().y - speed * elapsedTime;
+            rotateSprite(90);
+        }
+        else if(direction == 'S')
+        {
+            sf::Vector2f actualTile = getActualPosition();
+            float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
+            if(game::Map::getTileMapElement(actualTile.y + 1, actualTile.x) == "W" && actualPacMan.getPosition().y >= limitY)
+                return;
+
+            posX = actualPacMan.getPosition().x;
+            posY = actualPacMan.getPosition().y + speed * elapsedTime;
+            rotateSprite(270);
+        }
+        else if(direction == 'A')
+        {
+            sf::Vector2f actualTile = getActualPosition();
+            float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
+            if(game::Map::getTileMapElement(actualTile.y, actualTile.x - 1) == "W" && actualPacMan.getPosition().x <= limitX)
+                return;
+
+            posX = actualPacMan.getPosition().x - speed * elapsedTime;
+            posY = actualPacMan.getPosition().y;
+            rotateSprite(0);
+        }
+        else if(direction == 'D')
+        {
+            sf::Vector2f actualTile = getActualPosition();
+            float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
+            if(game::Map::getTileMapElement(actualTile.y, actualTile.x + 1) == "W" && actualPacMan.getPosition().x >= limitX)
+                return;
+
+            posX = actualPacMan.getPosition().x + speed * elapsedTime;
+            posY = actualPacMan.getPosition().y;
+            rotateSprite(180);
+        }
+
+        float spriteChangeElapsedTime = spriteChangeClock.getElapsedTime().asSeconds();
+        if(spriteChangeElapsedTime >= spriteChangeInterval)
+        {
+            spriteChangeClock.restart();
+            if(actualPacManSpriteIndex == 2)
+                actualPacManSpriteIndex = 0;
+            else
+                actualPacManSpriteIndex++;
+
+            actualPacMan = pacManSprites[actualPacManSpriteIndex];
+        }
     }
-    else if(direction == 'S')
+    else
     {
-        sf::Vector2f actualTile = getActualPosition();
-        float limitY = game::GlobalManager::getMapPos().y + actualTile.y * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if(game::Map::getTileMapElement(actualTile.y + 1, actualTile.x) == "W" && actualPacMan.getPosition().y >= limitY)
-            return;
+        float spriteChangeElapsedTime = spriteChangeClock.getElapsedTime().asSeconds();
+        if(spriteChangeElapsedTime >= spriteChangeInterval)
+        {
+            spriteChangeClock.restart();
+            if(actualPacManSpriteIndex < 3)
+                actualPacManSpriteIndex = 3;
+            else
+                actualPacManSpriteIndex++;
 
-        posX = actualPacMan.getPosition().x;
-        posY = actualPacMan.getPosition().y + speed * elapsedTime;
-        rotateSprite(270);
-    }
-    else if(direction == 'A')
-    {
-        sf::Vector2f actualTile = getActualPosition();
-        float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if(game::Map::getTileMapElement(actualTile.y, actualTile.x - 1) == "W" && actualPacMan.getPosition().x <= limitX)
-            return;
+            if(actualPacManSpriteIndex == 11)
+            {
+                actualPacManSpriteIndex = 0;
+                actualPacMan = pacManSprites[0];
+                game::UI::restartRound();
+                return;
+            }
 
-        posX = actualPacMan.getPosition().x - speed * elapsedTime;
-        posY = actualPacMan.getPosition().y;
-        rotateSprite(0);
-    }
-    else if(direction == 'D')
-    {
-        sf::Vector2f actualTile = getActualPosition();
-        float limitX = game::GlobalManager::getMapPos().x + actualTile.x * game::GlobalManager::getTileSize() + game::GlobalManager::getTileSize() / 2;
-        if(game::Map::getTileMapElement(actualTile.y, actualTile.x + 1) == "W" && actualPacMan.getPosition().x >= limitX)
-            return;
-
-        posX = actualPacMan.getPosition().x + speed * elapsedTime;
-        posY = actualPacMan.getPosition().y;
-        rotateSprite(180);
+            actualPacMan = pacManSprites[actualPacManSpriteIndex];
+        }
     }
 
-    float spriteChangeElapsedTime = spriteChangeClock.getElapsedTime().asSeconds();
-    if(spriteChangeElapsedTime >= spriteChangeInterval)
-    {
-        spriteChangeClock.restart();
-        if(actualPacManSpriteIndex == 2)
-            actualPacManSpriteIndex = 0;
-        else
-            actualPacManSpriteIndex++;
-
-        actualPacMan = pacManSprites[actualPacManSpriteIndex];
-    }
-
-    setPacManOrigin();
+   // setPacManOrigin();
     actualPacMan.setPosition(sf::Vector2f(posX, posY));
 }
 
@@ -190,9 +217,10 @@ void game::PacMan::rotateSprite(float angle)
 
 void game::PacMan::setPacManOrigin()
 {
-    float sizeX = actualPacMan.getTexture()->getSize().x;
-    float sizeY = actualPacMan.getTexture()->getSize().y;
-    actualPacMan.setOrigin(sf::Vector2f(sizeX / 2, sizeY / 2));
+    float sizeX = pacManTextures[0].getSize().x;
+    float sizeY = pacManTextures[0].getSize().y;
+    for(int i = 0; i <= 10; i++)
+        pacManSprites[i].setOrigin(sf::Vector2f(sizeX / 2, sizeY / 2));
 }
 
 void game::PacMan::eatFruit()
@@ -218,4 +246,19 @@ void game::PacMan::toSpawnPoint()
 {
     actualPacMan.setPosition(spawnPoint);
     rotateSprite(180);
+}
+
+void game::PacMan::setDying(bool dying)
+{
+    game::PacMan::dying = dying;
+}
+
+bool game::PacMan::getDying()
+{
+    return dying;
+}
+
+int game::PacMan::getActualPacManSpriteIndex()
+{
+    return actualPacManSpriteIndex;
 }

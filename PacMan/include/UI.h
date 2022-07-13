@@ -13,7 +13,7 @@ class UI
 {
 private:
     Map gameMap;
-    static PacMan pacMan;
+    PacMan pacMan;
     BlinkyGhost blinkyGhost;
     Fruits fruits;
 

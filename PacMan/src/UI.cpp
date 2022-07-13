@@ -32,12 +32,12 @@ void game::UI::renderGame()
 
         fruits.drawFruits(window);
 
+        blinkyGhost.movement();
+        window.draw(blinkyGhost.getActualGhost());
+
         pacMan.movement();
         pacMan.eatFruit();
         window.draw(pacMan.getActualPacMan());
-
-        blinkyGhost.movement();
-        window.draw(blinkyGhost.getActualGhost());
 
         drawUI(window);
 
@@ -108,7 +108,9 @@ void game::UI::drawUI(sf::RenderWindow &window)
 
 void game::UI::restartRound()
 {
-    pacMan.toSpawnPoint();
+    game::PacMan::setDying(false);
+    game::PacMan::toSpawnPoint();
+    game::BlinkyGhost::toSpawnPoint();
 }
 
 
