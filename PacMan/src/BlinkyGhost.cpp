@@ -33,7 +33,7 @@ void game::BlinkyGhost::loadSprites()
 void game::BlinkyGhost::setInitialGhost()
 {
     setGhostOrigin();
-    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 1.5;
+    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 2.5;
     float posY = game::GlobalManager::getMapPos().y + game::GlobalManager::getTileSize() * 1.5;
     spawnPoint = sf::Vector2f(posX, posY);
     actualGhost.setPosition(spawnPoint);
@@ -256,4 +256,10 @@ sf::Vector2f game::BlinkyGhost::findTargetPoint()
     float posX = game::PacMan::getActualPosition().x;
 
     return sf::Vector2f(posY, posX);
+}
+
+void game::BlinkyGhost::toSpawnPoint()
+{
+    actualGhost.setPosition(spawnPoint);
+    direction = 'D';
 }

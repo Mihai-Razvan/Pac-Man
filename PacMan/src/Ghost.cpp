@@ -49,11 +49,14 @@ void game::Ghost::checkCollision()
     {
         if(mode == "Chase")
         {
-            int newLives = game::GlobalManager::getLives() - 1;
-            game::GlobalManager::setLives(newLives);
+            if(game::PacMan::getDying() == false)
+            {
+                int newLives = game::GlobalManager::getLives() - 1;
+                game::GlobalManager::setLives(newLives);
+                if(newLives == 0)
+                    std::cout << "GAME OVER" << std::endl;
+            }
             game::PacMan::setDying(true);
-            if(newLives == 0)
-                std::cout << "GAME OVER" << std::endl;
         }
         else if(mode == "Frightened")
             actualGhost.setPosition(respawnPoint);
@@ -104,7 +107,7 @@ void game::Ghost::changeSprite()
             }
         }
         else
-              actualGhost = frigthenedSprites[actualGhostSpriteIndex];
+            actualGhost = frigthenedSprites[actualGhostSpriteIndex];
     }
 }
 
@@ -213,9 +216,4 @@ sf::Vector2f game::Ghost::findFrightenedTargetPoint()
     }
 
     return furtherestPoint;
-}
-
-void game::Ghost::toSpawnPoint()
-{
-    actualGhost.setPosition(spawnPoint);
 }

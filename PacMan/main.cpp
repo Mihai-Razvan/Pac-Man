@@ -25,6 +25,7 @@ sf::Sprite game::PacMan::actualPacMan;
 sf::Vector2f game::PacMan::spawnPoint;
 bool game::PacMan::dying = false;
 int game::PacMan::actualPacManSpriteIndex;
+char game::PacMan::direction;
 
 std::string game::Ghost::mode = "Chase";
 sf::Texture game::Ghost::frigthenedTextures[2];
@@ -36,6 +37,8 @@ sf::Vector2f game::Ghost::respawnPoint;
 sf::Clock game::Ghost::frightenedClock;
 sf::Vector2f game::Ghost::spawnPoint;
 sf::Sprite game::Ghost::actualGhost;
+
+char game::BlinkyGhost::direction = 'R';
 
 std::string game::Fruits::fruitsMap[31][28];
 int game::Fruits::orangeScore = 100;

@@ -246,6 +246,7 @@ void game::PacMan::toSpawnPoint()
 {
     actualPacMan.setPosition(spawnPoint);
     rotateSprite(180);
+    direction = 'R';
 }
 
 void game::PacMan::setDying(bool dying)

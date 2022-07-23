@@ -6,11 +6,14 @@
 #include "Map.h"
 #include "Ghost.h"
 
-namespace game{
+namespace game
+{
 
 class BlinkyGhost: public Ghost
 {
 private:
+
+    static char direction;
 
     void loadSprites();
     void setInitialGhost();
@@ -22,6 +25,7 @@ public:
 
     sf::Sprite& getActualGhost();
     void movement();
+    static void toSpawnPoint();
 };
 }
 

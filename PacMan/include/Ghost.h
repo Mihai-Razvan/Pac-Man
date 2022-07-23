@@ -18,7 +18,7 @@ protected:
     static sf::Sprite actualGhost;
     int actualGhostSpriteIndex;
     std::string actualGhostSpriteType;   //chase or frightened; used for clipping when coming back to normal
-    char direction;    //could pe 'W', 'A', 'S', 'D'
+ //   char direction;    //could pe 'W', 'A', 'S', 'D'
     static float speed;      //per second
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
@@ -53,7 +53,6 @@ public:
     Ghost();
     static void startFrightened();
     static std::string getMode();
-    static void toSpawnPoint();
 
     virtual void movement() = 0;
     virtual sf::Sprite& getActualGhost() = 0;

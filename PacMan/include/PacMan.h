@@ -11,7 +11,7 @@ private:
     sf::Sprite pacManSprites[11];
     static sf::Sprite actualPacMan;     //the actual sprite of the pacman
     static int actualPacManSpriteIndex;
-    char direction;    //could pe 'W', 'A', 'S', 'D'
+    static char direction;    //could pe 'W', 'A', 'S', 'D'
     float speed;      //per second
     sf::Clock movementClock;
     sf::Clock spriteChangeClock;
