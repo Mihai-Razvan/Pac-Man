@@ -15,7 +15,7 @@ protected:
     sf::Sprite ghostSprites[2];
     static sf::Texture frigthenedTextures[2];
     static sf::Sprite frigthenedSprites[2];
-    static sf::Sprite actualGhost;
+    sf::Sprite actualGhost;
     int actualGhostSpriteIndex;
     std::string actualGhostSpriteType;   //chase or frightened; used for clipping when coming back to normal
  //   char direction;    //could pe 'W', 'A', 'S', 'D'
@@ -30,8 +30,8 @@ protected:
     static std::string mode;
     static int frigthenedTime;       //how long ghosts stay frightened
     static float timeInFrigthened;    //since ghosts became frightened
+    sf::Vector2f spawnPoint;
     static sf::Vector2f respawnPoint;
-    static sf::Vector2f spawnPoint;
 
     virtual void loadSprites() = 0;
     virtual void setInitialGhost() = 0;

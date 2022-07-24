@@ -6,6 +6,7 @@
 #include "Ghost.h"
 #include "BlinkyGhost.h"
 #include "Fruits.h"
+#include "PinkyGhost.h"
 
 namespace game
 {
@@ -15,10 +16,14 @@ private:
     Map gameMap;
     PacMan pacMan;
     BlinkyGhost blinkyGhost;
+    PinkyGhost pinkyGhost;
     Fruits fruits;
 
     sf::Texture lifeTexture;
     sf::Sprite lifeSprite;
+
+    static bool shouldRestart;
+    void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
 
     void handleEvents(sf::Event&, sf::RenderWindow&);
 
@@ -28,7 +33,7 @@ public:
     void renderGame();
     void openUISprites();   //to open different UI elements that don t have a class attributed such as lives, score
     void drawUI(sf::RenderWindow&);
-    static void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
+    static void setRestart(bool restart);
 };
 }
 

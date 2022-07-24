@@ -59,6 +59,7 @@
 		<Unit filename="include/LeeAlgorithm.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="include/PacMan.h" />
+		<Unit filename="include/PinkyGhost.h" />
 		<Unit filename="include/UI.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BlinkyGhost.cpp" />
@@ -68,6 +69,7 @@
 		<Unit filename="src/LeeAlgorithm.cpp" />
 		<Unit filename="src/Map.cpp" />
 		<Unit filename="src/PacMan.cpp" />
+		<Unit filename="src/PinkyGhost.cpp" />
 		<Unit filename="src/UI.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

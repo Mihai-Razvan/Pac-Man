@@ -142,7 +142,7 @@ void game::PacMan::movement()
             {
                 actualPacManSpriteIndex = 0;
                 actualPacMan = pacManSprites[0];
-                game::UI::restartRound();
+                game::UI::setRestart(true);
                 return;
             }
 
@@ -150,7 +150,7 @@ void game::PacMan::movement()
         }
     }
 
-   // setPacManOrigin();
+    // setPacManOrigin();
     actualPacMan.setPosition(sf::Vector2f(posX, posY));
 }
 
@@ -226,6 +226,8 @@ void game::PacMan::setPacManOrigin()
 void game::PacMan::eatFruit()
 {
     sf::Vector2f actualPosition = getActualPosition();
+
+    actualPosition = getActualPosition();
     if(game::Fruits::getFruit(actualPosition.y, actualPosition.x) == "O")   //orange
     {
         game::Fruits::setFruit(actualPosition.y, actualPosition.x, "N");
@@ -240,6 +242,7 @@ void game::PacMan::eatFruit()
 
         game::Ghost::startFrightened();
     }
+
 }
 
 void game::PacMan::toSpawnPoint()

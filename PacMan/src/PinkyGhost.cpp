@@ -1,4 +1,4 @@
-#include "BlinkyGhost.h"
+#include "PinkyGhost.h"
 #include <SFML/Graphics.hpp>
 #include <queue>
 #include <vector>
@@ -7,39 +7,40 @@
 #include "GlobalManager.h"
 #include "Map.h"
 #include "Ghost.h"
+#include "PacMan.h"
 
-game::BlinkyGhost::BlinkyGhost()
+game::PinkyGhost::PinkyGhost()
 {
     loadSprites();
     actualGhost = ghostSprites[0];
     setInitialGhost();
 
-    direction = 'D';
+    direction = 'A';
     spriteChangeInterval = 0.1f;
     actualGhostSpriteIndex = 0;
     findPath(findTargetPoint());
     changeDirection();
 }
 
-void game::BlinkyGhost::loadSprites()
+void game::PinkyGhost::loadSprites()
 {
-    ghostTextures[0].loadFromFile("Sprites//ghosts//b-0.png");
-    ghostTextures[1].loadFromFile("Sprites//ghosts//b-1.png");
+    ghostTextures[0].loadFromFile("Sprites//ghosts//p-0.png");
+    ghostTextures[1].loadFromFile("Sprites//ghosts//p-1.png");
 
     ghostSprites[0].setTexture(ghostTextures[0]);
     ghostSprites[1].setTexture(ghostTextures[1]);
 }
 
-void game::BlinkyGhost::setInitialGhost()
+void game::PinkyGhost::setInitialGhost()
 {
     setGhostOrigin();
-    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getTileSize() * 2.5;
+    float posX = game::GlobalManager::getMapPos().x + game::GlobalManager::getMapSize().x - game::GlobalManager::getTileSize() * 2.5;
     float posY = game::GlobalManager::getMapPos().y + game::GlobalManager::getTileSize() * 1.5;
     spawnPoint = sf::Vector2f(posX, posY);
     actualGhost.setPosition(spawnPoint);
 }
 
-void game::BlinkyGhost::movement()
+void game::PinkyGhost::movement()
 {
     changeDirection();
 
@@ -121,12 +122,12 @@ void game::BlinkyGhost::movement()
     checkCollision();
 }
 
-sf::Sprite& game::BlinkyGhost::getActualGhost()
+sf::Sprite& game::PinkyGhost::getActualGhost()
 {
     return actualGhost;
 }
 
-void game::BlinkyGhost::changeDirection()
+void game::PinkyGhost::changeDirection()
 {
     sf::Vector2f actualPosition = getActualPosition();
     float posX = actualGhost.getPosition().x;
@@ -253,7 +254,7 @@ void game::BlinkyGhost::changeDirection()
     }
 }
 
-sf::Vector2f game::BlinkyGhost::findTargetPoint()
+sf::Vector2f game::PinkyGhost::findTargetPoint()
 {
     float posY = game::PacMan::getActualPosition().y;
     float posX = game::PacMan::getActualPosition().x;
@@ -261,8 +262,8 @@ sf::Vector2f game::BlinkyGhost::findTargetPoint()
     return sf::Vector2f(posY, posX);
 }
 
-void game::BlinkyGhost::toSpawnPoint()
+void game::PinkyGhost::toSpawnPoint()
 {
     actualGhost.setPosition(spawnPoint);
-    direction = 'D';
+    direction = 'A';
 }

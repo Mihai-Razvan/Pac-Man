@@ -7,6 +7,7 @@
 #include "Ghost.h"
 #include "BlinkyGhost.h"
 #include "Fruits.h"
+#include "PinkyGhost.h"
 
 game::UI::UI()
 {
@@ -35,7 +36,14 @@ void game::UI::renderGame()
         blinkyGhost.movement();
         window.draw(blinkyGhost.getActualGhost());
 
+         pinkyGhost.movement();
+         window.draw(pinkyGhost.getActualGhost());
+
         pacMan.movement();
+
+        if(shouldRestart == true)       //we should keep it here otherwise exception
+            restartRound();
+
         pacMan.eatFruit();
         window.draw(pacMan.getActualPacMan());
 
@@ -106,11 +114,18 @@ void game::UI::drawUI(sf::RenderWindow &window)
     }
 }
 
+void game::UI::setRestart(bool restart)
+{
+    shouldRestart = restart;
+}
+
 void game::UI::restartRound()
 {
-    game::PacMan::setDying(false);
-    game::PacMan::toSpawnPoint();
-    game::BlinkyGhost::toSpawnPoint();
+    shouldRestart = false;
+    pacMan.setDying(false);
+    pacMan.toSpawnPoint();
+    blinkyGhost.toSpawnPoint();
+    pinkyGhost.toSpawnPoint();
 }
 
 

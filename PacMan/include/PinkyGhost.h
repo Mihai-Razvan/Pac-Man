@@ -1,5 +1,5 @@
-#ifndef BLINKYGHOST_H
-#define BLINKYGHOST_H
+#ifndef PINKYGHOST_H
+#define PINKYGHOST_H
 #include <SFML/Graphics.hpp>
 #include "PacMan.h"
 #include "GlobalManager.h"
@@ -8,8 +8,7 @@
 
 namespace game
 {
-
-class BlinkyGhost: public Ghost
+class PinkyGhost: public Ghost
 {
 private:
 
@@ -21,7 +20,7 @@ private:
     sf::Vector2f findTargetPoint();
 
 public:
-    BlinkyGhost();
+    PinkyGhost();
 
     sf::Sprite& getActualGhost();
     void movement();
@@ -29,4 +28,4 @@ public:
 };
 }
 
-#endif // BLINKYGHOST_H
+#endif // PINKYGHOST_H
