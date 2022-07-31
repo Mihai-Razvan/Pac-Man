@@ -266,3 +266,8 @@ int game::PacMan::getActualPacManSpriteIndex()
 {
     return actualPacManSpriteIndex;
 }
+
+char game::PacMan::getDirection()
+{
+    return game::PacMan::direction;
+}

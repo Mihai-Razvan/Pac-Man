@@ -39,6 +39,7 @@ public:
     static void setDying(bool);
     static bool getDying();
     static int getActualPacManSpriteIndex();
+    static char getDirection();
 };
 }
 

@@ -256,8 +256,29 @@ void game::PinkyGhost::changeDirection()
 
 sf::Vector2f game::PinkyGhost::findTargetPoint()
 {
-    float posY = game::PacMan::getActualPosition().y;
-    float posX = game::PacMan::getActualPosition().x;
+    int posX = game::PacMan::getActualPosition().x;
+    int posY = game::PacMan::getActualPosition().y;
+    char pacManDirection = game::PacMan::getDirection();
+
+    switch(pacManDirection)
+    {
+    case 'W':
+        while(game::Map::getTileMapElement(posY - 1, posX) == "O")
+            posY--;
+        break;
+    case 'S':
+        while(game::Map::getTileMapElement(posY + 1, posY) == "O")
+            posY++;
+        break;
+    case 'A':
+        while(game::Map::getTileMapElement(posY, posX - 1) == "O")
+            posX--;
+        break;
+    case 'D':
+        while(game::Map::getTileMapElement(posY, posX + 1) == "O")
+            posX++;
+        break;
+    }
 
     return sf::Vector2f(posY, posX);
 }

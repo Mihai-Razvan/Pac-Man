@@ -36,8 +36,8 @@ void game::UI::renderGame()
         blinkyGhost.movement();
         window.draw(blinkyGhost.getActualGhost());
 
-         pinkyGhost.movement();
-         window.draw(pinkyGhost.getActualGhost());
+        pinkyGhost.movement();
+        window.draw(pinkyGhost.getActualGhost());
 
         pacMan.movement();
 
