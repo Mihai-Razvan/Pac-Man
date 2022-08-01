@@ -9,8 +9,6 @@
 #include "BlinkyGhost.h"
 #include "PinkyGhost.h"
 
-//game::PacMan game::UI::pacMan;
-//game::BlinkyGhost game::UI::blinkyGhost;
 bool game::UI::shouldRestart = false;
 
 float game::GlobalManager::screenWidth = 600.f;

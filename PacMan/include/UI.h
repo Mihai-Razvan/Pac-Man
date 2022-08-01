@@ -29,7 +29,8 @@ private:
     static bool shouldRestart;
     void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
 
-    void handleEvents(sf::Event&, sf::RenderWindow&);
+    void handleGameEvents(sf::Event&, sf::RenderWindow&);
+    void handleMenuEvents(sf::Event&, sf::RenderWindow&);
     void drawScore(sf::RenderWindow&);
 
 public:

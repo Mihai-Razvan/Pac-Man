@@ -27,7 +27,10 @@ void game::UI::renderGame()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            handleEvents(event, window);
+            if(game::GlobalManager::getStage() == "Game")
+                handleGameEvents(event, window);
+            else
+                handleMenuEvents(event, window);
         }
 
         window.clear();
@@ -69,10 +72,43 @@ void game::UI::drawGameStage(sf::RenderWindow& window)
 
 void game::UI::drawMenuStage(sf::RenderWindow& window)
 {
-
+    window.draw(menu.getPlaySprite());
+    window.draw(menu.getQuitSprite());
 }
 
-void game::UI::handleEvents(sf::Event &event, sf::RenderWindow& window)
+void game::UI::handleMenuEvents(sf::Event &event, sf::RenderWindow& window)
+{
+    if (event.type == sf::Event::Closed)
+        window.close();
+    else if(event.type == sf::Event::KeyPressed)
+    {
+        switch(event.key.code)
+        {
+        case sf::Keyboard::W:
+            menu.setSelectedButton("Play");
+            break;
+        case sf::Keyboard::Up:
+            menu.setSelectedButton("Play");
+            break;
+        case sf::Keyboard::S:
+            menu.setSelectedButton("Quit");
+            break;
+        case sf::Keyboard::Down:
+            menu.setSelectedButton("Quit");
+            break;
+        case sf::Keyboard::Enter:
+            if(menu.getSelectedButton() == "Play")
+                game::GlobalManager::setStage("Game");
+            else
+                window.close();
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+void game::UI::handleGameEvents(sf::Event &event, sf::RenderWindow& window)
 {
     if (event.type == sf::Event::Closed)
         window.close();
