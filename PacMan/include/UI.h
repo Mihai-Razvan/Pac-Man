@@ -7,6 +7,7 @@
 #include "BlinkyGhost.h"
 #include "Fruits.h"
 #include "PinkyGhost.h"
+#include "Menu.h"
 
 namespace game
 {
@@ -18,14 +19,18 @@ private:
     BlinkyGhost blinkyGhost;
     PinkyGhost pinkyGhost;
     Fruits fruits;
+    Menu menu;
 
     sf::Texture lifeTexture;
     sf::Sprite lifeSprite;
+    sf::Texture digitsTextures[10];
+    sf::Sprite digitsSprites[10];
 
     static bool shouldRestart;
     void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
 
     void handleEvents(sf::Event&, sf::RenderWindow&);
+    void drawScore(sf::RenderWindow&);
 
 public:
 
@@ -34,6 +39,8 @@ public:
     void openUISprites();   //to open different UI elements that don t have a class attributed such as lives, score
     void drawUI(sf::RenderWindow&);
     static void setRestart(bool restart);
+    void drawGameStage(sf::RenderWindow&);
+    void drawMenuStage(sf::RenderWindow&);
 };
 }
 

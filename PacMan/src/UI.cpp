@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <math.h>
 #include "UI.h"
 #include "Map.h"
 #include "GlobalManager.h"
@@ -8,6 +9,7 @@
 #include "BlinkyGhost.h"
 #include "Fruits.h"
 #include "PinkyGhost.h"
+#include "Menu.h"
 
 game::UI::UI()
 {
@@ -29,29 +31,45 @@ void game::UI::renderGame()
         }
 
         window.clear();
-        window.draw(gameMap.getMapSprite());
 
-        fruits.drawFruits(window);
+        if(game::GlobalManager::getStage() == "Game")
+            drawGameStage(window);
+        else
+            drawMenuStage(window);
 
-        blinkyGhost.movement();
-        window.draw(blinkyGhost.getActualGhost());
-
-        pinkyGhost.movement();
-        window.draw(pinkyGhost.getActualGhost());
-
-        pacMan.movement();
-
-        if(shouldRestart == true)       //we should keep it here otherwise exception
-            restartRound();
-
-        pacMan.eatFruit();
-        window.draw(pacMan.getActualPacMan());
-
-        drawUI(window);
-
-        // gameMap.drawRectangles(window);
         window.display();
     }
+}
+
+void game::UI::drawGameStage(sf::RenderWindow& window)
+{
+    window.draw(gameMap.getMapSprite());
+
+    fruits.drawFruits(window);
+
+    blinkyGhost.movement();
+    window.draw(blinkyGhost.getActualGhost());
+
+    pinkyGhost.movement();
+    window.draw(pinkyGhost.getActualGhost());
+
+    pacMan.movement();
+
+    if(shouldRestart == true)       //we should keep it here otherwise exception
+        restartRound();
+
+    pacMan.eatFruit();
+    window.draw(pacMan.getActualPacMan());
+
+    drawUI(window);
+    drawScore(window);
+
+    // gameMap.drawRectangles(window);
+}
+
+void game::UI::drawMenuStage(sf::RenderWindow& window)
+{
+
 }
 
 void game::UI::handleEvents(sf::Event &event, sf::RenderWindow& window)
@@ -101,6 +119,28 @@ void game::UI::openUISprites()
     lifeTexture.loadFromFile("Sprites//fruits//apple.png");     //to be changes
     lifeSprite.setTexture(lifeTexture);
     lifeSprite.setOrigin(lifeTexture.getSize().x / 2, lifeTexture.getSize().y / 2);
+
+    digitsTextures[0].loadFromFile("Sprites//ui//0.png");
+    digitsTextures[1].loadFromFile("Sprites//ui//1.png");
+    digitsTextures[2].loadFromFile("Sprites//ui//2.png");
+    digitsTextures[3].loadFromFile("Sprites//ui//3.png");
+    digitsTextures[4].loadFromFile("Sprites//ui//4.png");
+    digitsTextures[5].loadFromFile("Sprites//ui//5.png");
+    digitsTextures[6].loadFromFile("Sprites//ui//6.png");
+    digitsTextures[7].loadFromFile("Sprites//ui//7.png");
+    digitsTextures[8].loadFromFile("Sprites//ui//8.png");
+    digitsTextures[9].loadFromFile("Sprites//ui//9.png");
+
+    digitsSprites[0].setTexture(digitsTextures[0]);
+    digitsSprites[1].setTexture(digitsTextures[1]);
+    digitsSprites[2].setTexture(digitsTextures[2]);
+    digitsSprites[3].setTexture(digitsTextures[3]);
+    digitsSprites[4].setTexture(digitsTextures[4]);
+    digitsSprites[5].setTexture(digitsTextures[5]);
+    digitsSprites[6].setTexture(digitsTextures[6]);
+    digitsSprites[7].setTexture(digitsTextures[7]);
+    digitsSprites[8].setTexture(digitsTextures[8]);
+    digitsSprites[9].setTexture(digitsTextures[9]);
 }
 
 void game::UI::drawUI(sf::RenderWindow &window)
@@ -128,4 +168,29 @@ void game::UI::restartRound()
     pinkyGhost.toSpawnPoint();
 }
 
+void game::UI::drawScore(sf::RenderWindow &window)
+{
+    int numOfDigits = 0;
+    int score = game::GlobalManager::getScore();
 
+    if(score == 0)
+        numOfDigits = 1;
+
+    while(score)
+    {
+        numOfDigits++;
+        score /= 10;
+    }
+
+    score = game::GlobalManager::getScore();
+    int digitPos = 0;
+
+    while(numOfDigits > 0)
+    {
+        int digit = score / (int) pow(10, numOfDigits - 1) % 10;
+        digitsSprites[digit].setPosition(sf::Vector2f(10 + digitPos * 20, 20));
+        window.draw(digitsSprites[digit]);
+        digitPos++;
+        numOfDigits--;
+    }
+}

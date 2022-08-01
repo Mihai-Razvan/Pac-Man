@@ -1,6 +1,7 @@
 #ifndef GLOBALMANAGER_H
 #define GLOBALMANAGER_H
 #include <SFML/Graphics.hpp>
+#include <string>
 
 namespace game {
 
@@ -18,6 +19,7 @@ private:
 
     static int score;
     static int lives;
+    static std::string stage;
 
 public:
     static float getScreenWidth();
@@ -35,6 +37,8 @@ public:
     static int getScore();
     static void setLives(int);
     static int getLives();
+    static void setStage(std::string);
+    static std::string getStage();
 };
 }
 

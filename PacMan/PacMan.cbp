@@ -56,8 +56,8 @@
 		<Unit filename="include/Fruits.h" />
 		<Unit filename="include/Ghost.h" />
 		<Unit filename="include/GlobalManager.h" />
-		<Unit filename="include/LeeAlgorithm.h" />
 		<Unit filename="include/Map.h" />
+		<Unit filename="include/Menu.h" />
 		<Unit filename="include/PacMan.h" />
 		<Unit filename="include/PinkyGhost.h" />
 		<Unit filename="include/UI.h" />
@@ -66,8 +66,8 @@
 		<Unit filename="src/Fruits.cpp" />
 		<Unit filename="src/Ghost.cpp" />
 		<Unit filename="src/GlobalManager.cpp" />
-		<Unit filename="src/LeeAlgorithm.cpp" />
 		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/Menu.cpp" />
 		<Unit filename="src/PacMan.cpp" />
 		<Unit filename="src/PinkyGhost.cpp" />
 		<Unit filename="src/UI.cpp" />

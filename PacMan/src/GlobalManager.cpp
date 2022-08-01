@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "GlobalManager.h"
+#include <string>
 
 float game::GlobalManager::getScreenWidth()
 {
@@ -66,4 +67,14 @@ void game::GlobalManager::setLives(int lives)
 int game::GlobalManager::getLives()
 {
     return lives;
+}
+
+void game::GlobalManager::setStage(std::string stage)
+{
+    game::GlobalManager::stage = stage;
+}
+
+std::string game::GlobalManager::getStage()
+{
+    return game::GlobalManager::stage;
 }

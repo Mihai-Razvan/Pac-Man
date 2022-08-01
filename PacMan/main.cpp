@@ -22,6 +22,7 @@ int game::GlobalManager::score = 0;
 int game::GlobalManager::lives = 3;
 sf::Vector2f game::GlobalManager::mapPos;
 sf::Vector2f game::GlobalManager::mapSize;
+std::string game::GlobalManager::stage = "Menu";
 
 sf::Sprite game::PacMan::actualPacMan;
 sf::Vector2f game::PacMan::spawnPoint;
