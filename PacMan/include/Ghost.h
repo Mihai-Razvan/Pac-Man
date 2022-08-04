@@ -56,6 +56,8 @@ public:
 
     virtual void movement() = 0;
     virtual sf::Sprite& getActualGhost() = 0;
+
+    void restartMovementClock();
 };
 }
 

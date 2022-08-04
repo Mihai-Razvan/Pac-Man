@@ -52,7 +52,7 @@ void game::PinkyGhost::movement()
     float posY = actualGhost.getPosition().y;
     int pathSize = path.size();
 
-    if(game::PacMan::getDying() == false)
+    if(game::PacMan::getDying() == false && game::GlobalManager::getGameStage() == "Playing")
     {
         if(direction == 'W')
         {

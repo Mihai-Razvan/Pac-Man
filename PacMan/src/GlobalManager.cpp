@@ -69,12 +69,22 @@ int game::GlobalManager::getLives()
     return lives;
 }
 
-void game::GlobalManager::setStage(std::string stage)
+void game::GlobalManager::setScene(std::string scene)
 {
-    game::GlobalManager::stage = stage;
+    game::GlobalManager::scene = scene;
 }
 
-std::string game::GlobalManager::getStage()
+std::string game::GlobalManager::getScene()
 {
-    return game::GlobalManager::stage;
+    return game::GlobalManager::scene;
+}
+
+void game::GlobalManager::setGameStage(std::string gameStage)
+{
+    game::GlobalManager::gameStage = gameStage;
+}
+
+std::string game::GlobalManager::getGameStage()
+{
+    return game::GlobalManager::gameStage;
 }

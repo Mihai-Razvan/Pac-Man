@@ -10,6 +10,7 @@
 #include "PinkyGhost.h"
 
 bool game::UI::shouldRestart = false;
+sf::Clock game::UI::endClock;
 
 float game::GlobalManager::screenWidth = 600.f;
 float game::GlobalManager::screenHeight = 600.f;
@@ -20,7 +21,8 @@ int game::GlobalManager::score = 0;
 int game::GlobalManager::lives = 3;
 sf::Vector2f game::GlobalManager::mapPos;
 sf::Vector2f game::GlobalManager::mapSize;
-std::string game::GlobalManager::stage = "Menu";
+std::string game::GlobalManager::scene = "Menu";
+std::string game::GlobalManager::gameStage = "Playing";
 
 sf::Sprite game::PacMan::actualPacMan;
 sf::Vector2f game::PacMan::spawnPoint;

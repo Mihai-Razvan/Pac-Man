@@ -25,6 +25,10 @@ private:
     sf::Sprite lifeSprite;
     sf::Texture digitsTextures[10];
     sf::Sprite digitsSprites[10];
+    sf::Texture gameOverTexture;
+    sf::Sprite gameOverSprite;
+    sf::Clock gameOverClock;
+    static sf::Clock endClock;
 
     static bool shouldRestart;
     void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
@@ -32,6 +36,8 @@ private:
     void handleGameEvents(sf::Event&, sf::RenderWindow&);
     void handleMenuEvents(sf::Event&, sf::RenderWindow&);
     void drawScore(sf::RenderWindow&);
+    void startMatch();
+    void gameEnding();
 
 public:
 
@@ -42,6 +48,7 @@ public:
     static void setRestart(bool restart);
     void drawGameStage(sf::RenderWindow&);
     void drawMenuStage(sf::RenderWindow&);
+    static void restartEndClock();
 };
 }
 

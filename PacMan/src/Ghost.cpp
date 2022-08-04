@@ -54,7 +54,10 @@ void game::Ghost::checkCollision()
                 int newLives = game::GlobalManager::getLives() - 1;
                 game::GlobalManager::setLives(newLives);
                 if(newLives == 0)
-                    std::cout << "GAME OVER" << std::endl;
+                {
+                    game::GlobalManager::setGameStage("Ending");
+                    game::UI::restartEndClock();
+                }
             }
             game::PacMan::setDying(true);
         }
@@ -216,4 +219,9 @@ sf::Vector2f game::Ghost::findFrightenedTargetPoint()
     }
 
     return furtherestPoint;
+}
+
+void game::Ghost::restartMovementClock()
+{
+    movementClock.restart();
 }

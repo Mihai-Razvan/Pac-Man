@@ -67,7 +67,7 @@ void game::PacMan::movement()
     float posX = actualPacMan.getPosition().x;
     float posY = actualPacMan.getPosition().y;
 
-    if(dying == false)
+    if(dying == false && game::GlobalManager::getGameStage() == "Playing")
     {
         if(direction == 'W')
         {
@@ -127,7 +127,7 @@ void game::PacMan::movement()
             actualPacMan = pacManSprites[actualPacManSpriteIndex];
         }
     }
-    else
+    else if(game::GlobalManager::getGameStage() == "Playing")
     {
         float spriteChangeElapsedTime = spriteChangeClock.getElapsedTime().asSeconds();
         if(spriteChangeElapsedTime >= spriteChangeInterval)
@@ -270,4 +270,9 @@ int game::PacMan::getActualPacManSpriteIndex()
 char game::PacMan::getDirection()
 {
     return game::PacMan::direction;
+}
+
+void game::PacMan::restartMovementClock()
+{
+    movementClock.restart();
 }

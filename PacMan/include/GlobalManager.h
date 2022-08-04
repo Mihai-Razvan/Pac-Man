@@ -19,7 +19,8 @@ private:
 
     static int score;
     static int lives;
-    static std::string stage;
+    static std::string scene;
+    static std::string gameStage;   // could pe playing or game over
 
 public:
     static float getScreenWidth();
@@ -37,8 +38,10 @@ public:
     static int getScore();
     static void setLives(int);
     static int getLives();
-    static void setStage(std::string);
-    static std::string getStage();
+    static void setScene(std::string);
+    static std::string getScene();
+    static void setGameStage(std::string);
+    static std::string getGameStage();
 };
 }
 

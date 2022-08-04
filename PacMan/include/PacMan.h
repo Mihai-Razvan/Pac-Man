@@ -36,6 +36,7 @@ public:
     static sf::Vector2f getActualPosition();     //returns the tile where pacMan is now positioned
     void eatFruit();
     void toSpawnPoint();
+    void restartMovementClock();
     static void setDying(bool);
     static bool getDying();
     static int getActualPacManSpriteIndex();

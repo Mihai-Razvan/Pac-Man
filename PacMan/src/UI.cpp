@@ -27,7 +27,7 @@ void game::UI::renderGame()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if(game::GlobalManager::getStage() == "Game")
+            if(game::GlobalManager::getScene() == "Game")
                 handleGameEvents(event, window);
             else
                 handleMenuEvents(event, window);
@@ -35,7 +35,7 @@ void game::UI::renderGame()
 
         window.clear();
 
-        if(game::GlobalManager::getStage() == "Game")
+        if(game::GlobalManager::getScene() == "Game")
             drawGameStage(window);
         else
             drawMenuStage(window);
@@ -63,6 +63,17 @@ void game::UI::drawGameStage(sf::RenderWindow& window)
 
     pacMan.eatFruit();
     window.draw(pacMan.getActualPacMan());
+
+    if(game::GlobalManager::getGameStage() == "Ending")
+    {
+        if(gameOverClock.getElapsedTime().asSeconds() >= 0.3f && gameOverClock.getElapsedTime().asSeconds() <= 0.6f)
+            window.draw(gameOverSprite);
+        else if(gameOverClock.getElapsedTime().asSeconds() > 0.6f)
+            gameOverClock.restart();
+
+        if(endClock.getElapsedTime().asSeconds() >= 5)
+            game::GlobalManager::setScene("Menu");
+    }
 
     drawUI(window);
     drawScore(window);
@@ -98,7 +109,10 @@ void game::UI::handleMenuEvents(sf::Event &event, sf::RenderWindow& window)
             break;
         case sf::Keyboard::Enter:
             if(menu.getSelectedButton() == "Play")
-                game::GlobalManager::setStage("Game");
+            {
+                game::GlobalManager::setScene("Game");
+                startMatch();
+            }
             else
                 window.close();
             break;
@@ -166,6 +180,7 @@ void game::UI::openUISprites()
     digitsTextures[7].loadFromFile("Sprites//ui//7.png");
     digitsTextures[8].loadFromFile("Sprites//ui//8.png");
     digitsTextures[9].loadFromFile("Sprites//ui//9.png");
+    gameOverTexture.loadFromFile("Sprites//ui//gameover.png");
 
     digitsSprites[0].setTexture(digitsTextures[0]);
     digitsSprites[1].setTexture(digitsTextures[1]);
@@ -177,6 +192,11 @@ void game::UI::openUISprites()
     digitsSprites[7].setTexture(digitsTextures[7]);
     digitsSprites[8].setTexture(digitsTextures[8]);
     digitsSprites[9].setTexture(digitsTextures[9]);
+    gameOverSprite.setTexture(gameOverTexture);
+
+    gameOverSprite.setOrigin(gameOverTexture.getSize().x / 2, gameOverTexture.getSize().y / 2);
+    gameOverSprite.setPosition(game::GlobalManager::getScreenWidth() / 2, game::GlobalManager::getScreenHeight() / 2);
+    gameOverSprite.setScale(2, 2);
 }
 
 void game::UI::drawUI(sf::RenderWindow &window)
@@ -229,4 +249,25 @@ void game::UI::drawScore(sf::RenderWindow &window)
         digitPos++;
         numOfDigits--;
     }
+}
+
+void game::UI::startMatch()
+{
+    pacMan.restartMovementClock();
+    pacMan.toSpawnPoint();
+    blinkyGhost.restartMovementClock();
+    blinkyGhost.toSpawnPoint();
+    pinkyGhost.restartMovementClock();
+    pinkyGhost.toSpawnPoint();
+
+    fruits.makeFruitsMap();
+    game::GlobalManager::setGameStage("Playing");
+    game::GlobalManager::setLives(3);
+    game::GlobalManager::setScore(0);
+    pacMan.setDying(false);
+}
+
+void game::UI::restartEndClock()
+{
+    endClock.restart();
 }
