@@ -76,7 +76,7 @@ void game::UI::drawGameStage(sf::RenderWindow& window)
             gameOverClock.restart();
 
         if(endClock.getElapsedTime().asSeconds() >= 5)
-            game::GlobalManager::setScene("Menu");
+            game::GlobalManager::setScene("Score");
     }
 
     drawUI(window);
