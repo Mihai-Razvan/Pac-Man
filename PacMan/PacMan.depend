@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1659606031 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
+1659869036 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\main.cpp
 	<iostream>
 	<string>
 	<SFML/Graphics.hpp>
@@ -431,7 +431,7 @@
 	<string>
 	<SFML/Graphics.hpp>
 
-1659606519 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
+1659872753 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\ui.h
 	<SFML/Graphics.hpp>
 	"Map.h"
 	"PacMan.h"
@@ -441,7 +441,7 @@
 	"PinkyGhost.h"
 	"Menu.h"
 
-1659606532 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
+1659872118 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ui.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<math.h>
@@ -467,7 +467,7 @@
 1659603374 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\pacman.h
 	<SFML/Graphics.hpp>
 
-1659604710 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
+1659871291 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pacman.cpp
 	<iostream>
 	"PacMan.h"
 	"GlobalManager.h"
@@ -481,7 +481,7 @@
 
 1657118759 d:\projects\codeblocks-projects\pacman_gitrep\pacman\include\inkyghost.h
 
-1659605997 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
+1659869036 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\ghost.cpp
 	<SFML/Graphics.hpp>
 	<iostream>
 	<queue>
@@ -497,7 +497,7 @@
 	"Ghost.h"
 	"GlobalManager.h"
 
-1659604637 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\blinkyghost.cpp
+1659870081 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\blinkyghost.cpp
 	"BlinkyGhost.h"
 	<SFML/Graphics.hpp>
 	<queue>
@@ -542,7 +542,7 @@
 	"Map.h"
 	"Ghost.h"
 
-1659604637 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pinkyghost.cpp
+1659870081 source:d:\projects\codeblocks-projects\pacman_gitrep\pacman\src\pinkyghost.cpp
 	"PinkyGhost.h"
 	<SFML/Graphics.hpp>
 	<queue>

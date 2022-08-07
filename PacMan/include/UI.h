@@ -33,9 +33,13 @@ private:
     static bool shouldRestart;
     void restartRound();   //when pacman loses a life this method repositions it and the ghosts back to theirs spawn point
 
+    void drawGameStage(sf::RenderWindow&);
+    void drawMenuStage(sf::RenderWindow&);
+    void drawScoreStage(sf::RenderWindow&);
     void handleGameEvents(sf::Event&, sf::RenderWindow&);
     void handleMenuEvents(sf::Event&, sf::RenderWindow&);
-    void drawScore(sf::RenderWindow&);
+    void handleScoreEvents(sf::Event&, sf::RenderWindow&);
+    void drawScore(sf::RenderWindow&, int, int, float);
     void startMatch();
     void gameEnding();
 
@@ -46,8 +50,6 @@ public:
     void openUISprites();   //to open different UI elements that don t have a class attributed such as lives, score
     void drawUI(sf::RenderWindow&);
     static void setRestart(bool restart);
-    void drawGameStage(sf::RenderWindow&);
-    void drawMenuStage(sf::RenderWindow&);
     static void restartEndClock();
 };
 }

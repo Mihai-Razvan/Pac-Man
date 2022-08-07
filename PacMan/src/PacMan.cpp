@@ -67,7 +67,7 @@ void game::PacMan::movement()
     float posX = actualPacMan.getPosition().x;
     float posY = actualPacMan.getPosition().y;
 
-    if(dying == false && game::GlobalManager::getGameStage() == "Playing")
+    if(dying == false && game::GlobalManager::getScene() == "Game" && game::GlobalManager::getGameStage() == "Playing")
     {
         if(direction == 'W')
         {
@@ -126,6 +126,10 @@ void game::PacMan::movement()
 
             actualPacMan = pacManSprites[actualPacManSpriteIndex];
         }
+
+        if(game::Map::getTileMapElement(getActualPosition().y, getActualPosition().x) == "P")
+            game::GlobalManager::setScene("Score");
+
     }
     else if(game::GlobalManager::getGameStage() == "Playing")
     {

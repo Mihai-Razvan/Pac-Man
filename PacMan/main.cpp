@@ -45,7 +45,7 @@ char game::PinkyGhost::direction = 'A';
 
 std::string game::Fruits::fruitsMap[31][28];
 int game::Fruits::orangeScore = 100;
-int game::Fruits::strawberryScore = 500;
+int game::Fruits::strawberryScore = 300;
 
 std::string game::Map::tileMap[31][28] =
 {

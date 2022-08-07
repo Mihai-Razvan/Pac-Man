@@ -62,7 +62,10 @@ void game::Ghost::checkCollision()
             game::PacMan::setDying(true);
         }
         else if(mode == "Frightened")
+        {
             actualGhost.setPosition(respawnPoint);
+            game::GlobalManager::setScore(game::GlobalManager::getScore() + 1000);
+        }
     }
 }
 

@@ -29,16 +29,20 @@ void game::UI::renderGame()
         {
             if(game::GlobalManager::getScene() == "Game")
                 handleGameEvents(event, window);
-            else
+            else if(game::GlobalManager::getScene() == "Menu")
                 handleMenuEvents(event, window);
+            else if(game::GlobalManager::getScene() == "Score")
+                handleScoreEvents(event, window);
         }
 
         window.clear();
 
         if(game::GlobalManager::getScene() == "Game")
             drawGameStage(window);
-        else
+        else if(game::GlobalManager::getScene() == "Menu")
             drawMenuStage(window);
+        else if(game::GlobalManager::getScene() == "Score")
+            drawScoreStage(window);
 
         window.display();
     }
@@ -76,7 +80,7 @@ void game::UI::drawGameStage(sf::RenderWindow& window)
     }
 
     drawUI(window);
-    drawScore(window);
+    drawScore(window, 50, 20, 1);
 
     // gameMap.drawRectangles(window);
 }
@@ -85,6 +89,11 @@ void game::UI::drawMenuStage(sf::RenderWindow& window)
 {
     window.draw(menu.getPlaySprite());
     window.draw(menu.getQuitSprite());
+}
+
+void game::UI::drawScoreStage(sf::RenderWindow& window)
+{
+    drawScore(window, game::GlobalManager::getScreenHeight() / 2, game::GlobalManager::getScreenHeight() / 2, 4);
 }
 
 void game::UI::handleMenuEvents(sf::Event &event, sf::RenderWindow& window)
@@ -157,10 +166,27 @@ void game::UI::handleGameEvents(sf::Event &event, sf::RenderWindow& window)
         case sf::Keyboard::Right:
             pacMan.setDirection('D');
             break;
+        case sf::Keyboard::Escape:
+            if(game::GlobalManager::getGameStage() == "Playing")
+                game::GlobalManager::setGameStage("Pause");
+            else if(game::GlobalManager::getGameStage() == "Pause")
+                game::GlobalManager::setGameStage("Playing");
+            break;
         default:
             break;
         }
 
+    }
+}
+
+void game::UI::handleScoreEvents(sf::Event &event, sf::RenderWindow& window)
+{
+    if (event.type == sf::Event::Closed)
+        window.close();
+    else if(event.type == sf::Event::KeyPressed)
+    {
+        if(event.key.code == sf::Keyboard::Escape)
+            game::GlobalManager::setScene("Menu");
     }
 }
 
@@ -224,7 +250,7 @@ void game::UI::restartRound()
     pinkyGhost.toSpawnPoint();
 }
 
-void game::UI::drawScore(sf::RenderWindow &window)
+void game::UI::drawScore(sf::RenderWindow &window, int xStart, int yPos, float scale)
 {
     int numOfDigits = 0;
     int score = game::GlobalManager::getScore();
@@ -240,11 +266,13 @@ void game::UI::drawScore(sf::RenderWindow &window)
 
     score = game::GlobalManager::getScore();
     int digitPos = 0;
+    float start = xStart - numOfDigits / 2 * 20 * scale;
 
     while(numOfDigits > 0)
     {
         int digit = score / (int) pow(10, numOfDigits - 1) % 10;
-        digitsSprites[digit].setPosition(sf::Vector2f(10 + digitPos * 20, 20));
+        digitsSprites[digit].setPosition(sf::Vector2f(start + digitPos * 20 * scale, yPos));
+        digitsSprites[digit].setScale(scale, scale);
         window.draw(digitsSprites[digit]);
         digitPos++;
         numOfDigits--;
